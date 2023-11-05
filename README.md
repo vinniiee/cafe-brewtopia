@@ -55,7 +55,7 @@ The BREWTOPIA Cafe Website is designed to serve as an online platform for our ca
   - Framer Motion (Version 10.16.4)
   - Vite React Plugin (@vitejs/plugin-react) (Version 4.0.3)
 
-This tech stack is used to be on par with a modern and efficient setup for developing a React-based web application with Vite as the build tool. It includes tools for routing, styling, linting, type checking, and animation. The project seems well-equipped for building a dynamic and responsive web application.
+This tech stack is selected to be on par with a modern and efficient setup for developing a React-based web application with Vite as the build tool. It includes tools for routing, styling, linting, type checking, and animation. The project seems well-equipped for building a dynamic and responsive web application.
 
 
 ## Getting Started
