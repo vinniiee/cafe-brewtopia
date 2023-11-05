@@ -26,7 +26,6 @@ The BREWTOPIA Cafe Website is designed to serve as an online platform for our ca
 ### Figma Files
 - You can find the design mockups for our cafe's website in the Figma files:
   - [Figma Designs - Landing Page](https://www.figma.com/file/1Qnxj97JsntBx3BUcLQfmF/Untitled?type=design&node-id=0%3A1&mode=design&t=wKewrM3uwK99sLSc-1)
-  ![Alt landing page](image link)
   - [Figma Designs - Menu Page](https://www.figma.com/file/1Qnxj97JsntBx3BUcLQfmF/Untitled?type=design&node-id=0%3A1&mode=design&t=wKewrM3uwK99sLSc-1)
   - [Figma Designs - Cart Page](https://www.figma.com/file/1Qnxj97JsntBx3BUcLQfmF/Untitled?type=design&node-id=0%3A1&mode=design&t=wKewrM3uwK99sLSc-1)
   - [Figma Designs - Error Page](https://www.figma.com/file/1Qnxj97JsntBx3BUcLQfmF/Untitled?type=design&node-id=0%3A1&mode=design&t=wKewrM3uwK99sLSc-1)
