@@ -1,6 +1,7 @@
 # BREWTOPIA Cafe Website
 
 Welcome to the BREWTOPIA Cafe Website GitHub repository. We're thrilled to have you here and are excited about your potential contributions to our project. This repository contains the source code for our cafe's website, which aims to provide a delightful online experience for our customers.
+- **Deployment Link**: [https://cafe-brewtopia.vercel.app/](https://cafe-brewtopia.vercel.app/)
 
 ## Table of Contents
 - [Project Overview](#project-overview)
