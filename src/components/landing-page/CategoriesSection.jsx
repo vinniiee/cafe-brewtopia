@@ -32,7 +32,7 @@ export default function CategoriesSection() {
               "md:row-start-1 col-start-1 row-start-2 md:col-start-6 col-span-2"
             }
           >
-            <CircleRing label={"Caffe Latte"} />
+            <CircleRing label={"Caffè Latte"} />
           </div>
           {/* <div className={ringClasses}>
           <CircleRing  label={"Americano"} />  </div>  */}
@@ -44,7 +44,7 @@ export default function CategoriesSection() {
               "md:row-start-2 col-start-2 row-start-3 md:col-start-5 col-span-2"
             }
           >
-            <CircleRing label={"Caffe Mocha"} />
+            <CircleRing label={"Caffè Mocha"} />
           </div>
         </div>
       </div>
