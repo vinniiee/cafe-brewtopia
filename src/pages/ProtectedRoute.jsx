@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 export default function ProtectedRoute() {
-    const temp= true;
+    const authenticated= false;
     const navigate = useNavigate();
 
     useEffect(()=>{
-        if(!temp)navigate("/");
+        if(!authenticated)navigate("/authentication");
     })
 
     return (<Outlet/>)

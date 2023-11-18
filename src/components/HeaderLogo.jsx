@@ -1,7 +1,7 @@
 import Logo from "../assets/Logo";
 
 export default function HeaderLogo() {
-  const variants = {
+  let variants = {
     initial: {
       x: "calc(50vw)",
       y: "calc(50vh)",
@@ -20,6 +20,7 @@ export default function HeaderLogo() {
       scale: [1, 2.5, 1],
     },
   };
+  
 
   const logoSize = 125;
   return (
@@ -28,8 +29,8 @@ export default function HeaderLogo() {
       initial="initial"
       animate="animate"
       size={logoSize}
-      className={`h-[80px] sm:h-[125px] 
-      -ml-[calc(var(--logo-size))] 
+      className={`absolute h-[80px] sm:h-[125px] 
+       
        
        [--logo-size:80px] sm:[--logo-size:125px]
         `}

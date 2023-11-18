@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import Flame from "../../assets/Flame";
 import RingButton from "../../ui/RingButton";
+import HeaderLogo from "../HeaderLogo";
 
 export default function Header() {
   return (
     <div className="relative overflow-hidden w-screen h-screen  min-h-screen sm:min-h-screen">
+      <HeaderLogo/>
       <motion.div
         className="relative h-full  bg-cover "
         initial={{ x: "100vw", opacity: 0 }}

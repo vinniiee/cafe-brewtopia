@@ -4,6 +4,7 @@ import AppLayout from "./ui/AppLayout";
 import { Cart, CreateOrder, Error, Home, Menu, Order } from "./pages";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import supabase from "./services/supabase";
+import Authentication from "./pages/Authentication";
 
 function App() {
   const test = async ()=>{
@@ -21,6 +22,7 @@ function App() {
       errorElement: <Error />,
       children: [
         { path: "/", element: <Home /> },
+        { path:"/authentication", element:<Authentication/>,errorElement:<Error/>},
         {
           element: <ProtectedRoute />,
           errorElement: <Error />,
