@@ -19,6 +19,7 @@ export default {
       'bermuda': '#78dcca',
       black:'#000000',
       night:'#111312',
+      'light-coffee':'#9f7447',
       'dark-coffee':'#4C2819',
       'dark-coffee-2':'#412215'
     },

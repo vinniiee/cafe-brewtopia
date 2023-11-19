@@ -1,6 +1,11 @@
 
+import { useState } from "react";
+import Signin from "../components/authentication/Signin";
+import Signup from "../components/authentication/Signup";
+
 export default function Authentication() {
+  const [register,setRegister] = useState(false);
   return (
-    <div>Authentication</div>
-  )
+    <Signup setRegister={setRegister} register={register} />
+  );
 }
