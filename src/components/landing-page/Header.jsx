@@ -2,8 +2,10 @@ import { motion } from "framer-motion";
 import Flame from "../../assets/Flame";
 import RingButton from "../../ui/RingButton";
 import HeaderLogo from "../HeaderLogo";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const navigate = useNavigate();
   return (
     <div className="relative overflow-hidden w-screen h-screen  min-h-screen sm:min-h-screen">
       <HeaderLogo/>
@@ -67,6 +69,7 @@ export default function Header() {
             className=" mt-8 ml-16 "
           >
             <RingButton
+              onClick={()=>navigate('/menu')}
               arrowColor={"text-dark-coffee-2"}
               textColor={"coffee"}
               label={"order now"}

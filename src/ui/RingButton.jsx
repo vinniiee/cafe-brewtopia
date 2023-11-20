@@ -2,13 +2,14 @@ import { useState } from "react";
 import Ring from "../assets/Ring";
 
 // eslint-disable-next-line react/prop-types
-export default function RingButton({ label, arrowColor,textColor, direction }) {
+export default function RingButton({ label, arrowColor,textColor, direction,onClick }) {
   const [hover, setHover] = useState(false);
   const left = <>&larr;</>;
   const right = <>&rarr;</>;
   const arrow = direction === "left" ? left : right;
   return (
     <button
+      onClick={()=>onClick?.()}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className={`relative flex justify-center drop-shadow-[5px_10px_4px_rgba(0,0,0,.4)] items-center text-8xl hover:scale-110 duration-500 font-primary ${

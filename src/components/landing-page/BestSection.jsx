@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import RingButton from "../../ui/RingButton";
 import Beans from "../../assets/Beans";
+import { useNavigate } from "react-router-dom";
 
 export default function BestSection() {
+  const navigate = useNavigate();
   return (
     <div className="relative flex flex-col  justify-center items-center md:flex-row w-screen py-64 px-32 overflow-hidden  ">
       <div className="relative hidden sm:flex justify-center items-center md:w-1/2 p-4  z-20 drop-shadow-[35px_35px_8px_rgba(0,0,0,.4)] ">
@@ -41,7 +43,7 @@ export default function BestSection() {
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ delay: 1, duration: 1.5 }}
           >
-            <RingButton label={"order now"} />
+            <RingButton label={"order now"} onClick={()=>navigate('/menu')} />
           </motion.div>
         </div>
       </div>

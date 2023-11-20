@@ -2,9 +2,25 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Flame from "../assets/Flame";
 import Beans from "../assets/Beans";
+import { login, signup } from "../services/apiAuth";
 
 export default function Authentication() {
   const [register, setRegister] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function submitHandler(e) {
+    e.preventDefault();
+    if (register) {
+      const  data  = await signup({ name, email, password });
+      console.log(data);
+    } else {
+      const  data  = await login({ email, password });
+      console.log(data);
+    }
+  }
+
   return (
     <div
       className="relative font-primary flex flex-col justify-center items-center
@@ -35,6 +51,7 @@ export default function Authentication() {
           <img className="w-full h-full " src="/named-logo.svg" />
         </div>
         <form
+          onSubmit={submitHandler}
           className="flex flex-col w-full 
         p-4 sm:p-8 space-y-2 sm:space-y-4 justify-center items-end
          bg-dark-coffee rounded-md  shadow-lg
@@ -57,7 +74,11 @@ export default function Authentication() {
                     p-1.5 mt-1 text-lg outline-none px-3"
                   name="name"
                   type="text"
+                  autoFocus
                   required
+                  minLength={6}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </motion.div>
             )}
@@ -72,6 +93,9 @@ export default function Authentication() {
               name="email"
               type="email"
               required
+              autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="flex flex-col w-full justify-center items-start">
@@ -84,6 +108,9 @@ export default function Authentication() {
               name="password"
               type="password"
               required
+              value={password}
+              minLength={8}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button

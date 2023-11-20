@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Logo from "../assets/Logo";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const navigate  = useNavigate();
   const [y, setY] = useState(false);
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function Navbar() {
       } z-50    transition-all duration-1000`}
     >
       <div className="pt-2">
-        <Logo className={` h-[80px] sm:h-[125px] `} />
+        <Logo onClick={()=>navigate('/')} className={` h-[80px] sm:h-[125px] cursor-pointer`} />
       </div>
       <div className="flex justify-center items-center space-x-2 md:space-x-4 -ml-16 ">
         <div className="w-[50px] md:w-auto">
