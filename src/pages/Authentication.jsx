@@ -2,8 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import Flame from "../assets/Flame";
 import Beans from "../assets/Beans";
-import { useLogin } from "../features/authentication/useLogin";
-import { useSignup } from "../features/authentication/useSignup";
+import { login, signup } from "../services/apiAuth";
 
 export default function Authentication() {
   const [register, setRegister] = useState(false);
@@ -11,18 +10,14 @@ export default function Authentication() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { login, loggingIn } = useLogin();
-  const { signup, signingUp } = useSignup();
-
-  const isLoading = loggingIn || signingUp;
   async function submitHandler(e) {
     e.preventDefault();
     if (register) {
-      signup({ name, email, password });
-      // console.log(data);
+      const  data  = await signup({ name, email, password });
+      console.log(data);
     } else {
-      login({ email, password });
-      // console.log(data);
+      const  data  = await login({ email, password });
+      console.log(data);
     }
   }
 
@@ -124,7 +119,7 @@ export default function Authentication() {
             shadow duration-200 active:-translate-y-1"
           >
             <p className="leading-none pt-1">
-              {isLoading ? "Loading..." : register ? "SIGN UP" : "SIGN IN"}
+              {register ? "SIGN UP" : "SIGN IN"}
             </p>
           </button>
         </form>
