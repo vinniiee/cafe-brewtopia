@@ -3,18 +3,18 @@ import "./App.css";
 import AppLayout from "./ui/AppLayout";
 import { Cart, CreateOrder, Error, Home, Menu, Order } from "./pages";
 import ProtectedRoute from "./pages/ProtectedRoute";
-import supabase from "./services/supabase";
 import Authentication from "./pages/Authentication";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 function App() {
-  const test = async ()=>{
-    let { data: coffees, error } = await supabase
-  .from('coffees')
-  .select('*')
-          console.log(coffees,error)
-  }
-  test();
-
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        // staleTime: 60 * 1000,
+        staleTime: 0,
+      },
+    },
+  });
 
   const router = createBrowserRouter([
     {
@@ -22,7 +22,11 @@ function App() {
       errorElement: <Error />,
       children: [
         { path: "/", element: <Home /> },
-        { path:"/authentication", element:<Authentication/>,errorElement:<Error/>},
+        {
+          path: "/authentication",
+          element: <Authentication />,
+          errorElement: <Error />,
+        },
         {
           element: <ProtectedRoute />,
           errorElement: <Error />,
@@ -50,7 +54,11 @@ function App() {
       ],
     },
   ]);
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;
