@@ -4,7 +4,7 @@ export default function Footer() {
 
   return (
     <div className="bg-night w-screen overflow-hidden">
-      <div className="flex flex-col sm:flex-row justify-around items-center space-x-8 text-center  text-white p-16 font-primary text-xs md:text-lg tracking-wide font-light">
+      <div className="flex flex-col sm:flex-row justify-around items-center sm:space-x-8 text-center  text-white p-16 font-primary text-xs md:text-lg tracking-wide font-light">
         <div className="flex flex-col justify-center items-center sm:justify-start sm:items-start sm:self-start text-left space-y-2 md:space-y-4 sm:w-1/2  md:w-1/2 ">
           <div className="h-full">
             <img className="w-full h-full " src="/named-logo.svg" />

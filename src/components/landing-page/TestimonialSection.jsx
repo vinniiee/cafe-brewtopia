@@ -36,10 +36,11 @@ export default function TestimonialSection() {
           <Quotes className="h-full w-full drop-shadow-[10px_10px_2px_rgba(0,0,0,.5)]" />
         </div>
       </div>
-      
-      <Carousel>
+      <div className="relative z-10 w-screen h-full p-8 sm:px-16 md:px-16 pb-32 md:pb-16">
+      <Carousel showArrows={true}>
         {carouselItems}
       </Carousel>
+      </div>
     </div>
   );
 }
