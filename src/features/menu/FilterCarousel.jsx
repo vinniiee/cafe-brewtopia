@@ -39,10 +39,8 @@ export default function FilterCarousel() {
     </button>
   ));
   return (
-    <div className="font-primary w-full">
-      <div className="flex justify-end items-end w-full ">
+      
         <Carousel>{carouselItems}</Carousel>
-      </div>
-    </div>
+      
   );
 }
