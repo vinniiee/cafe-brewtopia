@@ -4,43 +4,36 @@ import { useSearchParams } from "react-router-dom";
 
 export default function FilterCarousel() {
   const categories = [
-    "All",
-    "Espresso",
-    "Cappuccino",
-    "Caffe Latte",
-    "Iced Brew",
-    "Caffe Mocha",
+    { label: "All", param: "filterBy", value: "all" },
+    { label: "Espresso", param: "filterBy", value: "espresso" },
+    { label: "Cappuccino", param: "filterBy", value: "cappuccino" },
+    { label: "Caffe Latte", param: "filterBy", value: "latte" },
+    { label: "Iced Brew", param: "filterBy", value: "iced brew" },
+    { label: "Cafe Mocha", param: "filterBy", value: "mocha" },
   ];
-  // const { data, error, isLoading } = useCoffees();
-  // console.log("Coffees", data);
-  // // const {data} = values;
-  // console.log("error", error);
-  // console.log("isLoading", isLoading);
   const [searchParams, setSearchParams] = useSearchParams();
-  const selected = searchParams.get("type");
+  let selected = searchParams.get("filterBy");
   if (!selected) {
-    setSearchParams({ type: "all" });
+    searchParams.set("filterBy", "all");
+    setSearchParams(searchParams);
   }
   const handler = (item) => {
-    setSearchParams({ type: item.toLowerCase() });
+    searchParams.set(item.param, item.value);
+    setSearchParams({ [item.param]: item.value });
   };
 
   const carouselItems = categories.map((item) => (
     <button
       onClick={() => handler(item)}
       className={`${
-        selected === item.toLowerCase() ? "bg-dark-coffee" : "bg-light-coffee"
+        selected === item.value ? "bg-dark-coffee" : "bg-light-coffee"
       } text-lg inline-block
           outline-none shadow-lg tracking-wide p-1 px-4 rounded whitespace-nowrap
           mx-2 text-white duration-200`}
-      key={item}
+      key={item.value}
     >
-      {item}
+      {item.label}
     </button>
   ));
-  return (
-      
-        <Carousel>{carouselItems}</Carousel>
-      
-  );
+  return <Carousel>{carouselItems}</Carousel>;
 }

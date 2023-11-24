@@ -11,12 +11,41 @@ import { useState } from "react";
 export default function Menu() {
   const [coffee, setCoffee] = useState(0);
   const { data, error, isLoading } = useCoffees();
-  console.log("Coffees", data);
-  console.log("error", error);
-  console.log("isLoading", isLoading);
-  if (isLoading) {
-    return <div>Loading...</div>;
-  } else {
+  // console.log("Coffees", data);
+  // console.log("error", error);
+  // console.log("isLoading", isLoading);
+  if (isLoading || !data || data.length === 0) {
+    return (
+      <div
+        className="relative flex flex-col w-full p-8 bg-cover sm:px-32"
+        style={{ backgroundImage: "url(/wall.jpg)" }}
+      >
+        <div className="absolute top-0 left-0 w-1/3 z-0">
+          <img className="w-full" src="/ui/menu-art.svg" alt="menu-art" />
+        </div>
+        <div className="flex flex-col lg:flex-row font-primary items-center w-full">
+          <SearchBar />
+          <div className="relative z-10flex justify-end items-end w-full lg:max-w-lg ">
+            <FilterCarousel isLoading={isLoading} />
+          </div>
+        </div>
+        <CoffeeInfo index={coffee} coffee={data?data[coffee]:null} />
+        <div className="flex flex-col xl:-mt-20">
+          <div className="relative z-10 -mb-6">
+            <SortCarousel />
+          </div>
+          <div className="flex space-x-4 z-10  bg-black/90 rounded  max-w-2xl w-full lg:w-fit min-h-[150px] min-w-[650px]  pt-0 px-4 ">
+            {data && <CoffeeList data={data} setCoffee={setCoffee} />}
+          </div>
+        </div>
+      </div>
+    );
+  }
+  //  else if (!data || data.length === 0) {
+  //   return <div>No Coffee Found!</div>;
+  // }
+  else {
+    console.log("data", data);
     return (
       <div
         className="relative flex flex-col w-full p-8 bg-cover sm:px-32"

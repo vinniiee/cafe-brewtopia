@@ -1,12 +1,23 @@
 import supabase from "./supabase";
 
-export const getCoffees = async ({ filterBy, sortBy }) => {
+export const getCoffees = async ({ typeFilter, cascadeFilters, sortBy }) => {
   const query = supabase.from("coffees").select("*");
-//   console.log(filterBy);
-  filterBy.forEach((filter) => query.eq(filter.key, filter.value));
+
+  //TYPE FILTER
+  if (typeFilter) {
+    query.eq(typeFilter.key, typeFilter.value)
+    
+  }
+  console.log("CascadeFilters",cascadeFilters);
+  if(cascadeFilters.length>0){
+    query.contains("attributes", cascadeFilters);
+  }
+
+  // WITH MILK & SERVED FILTER
+  // filterBy.forEach((filter) => query.eq(attributes, filter.value));
 
   if (sortBy) {
-    query.order(sortBy.key, { ascending: sortBy.value === "asc" });
+    query.order(sortBy.value, { ascending: sortBy.ascending });
   }
 
   const { data, error } = await query;
@@ -16,5 +27,5 @@ export const getCoffees = async ({ filterBy, sortBy }) => {
     throw new Error("Could not fetch coffees!");
   }
   console.log(data);
-  return  data ;
+  return data;
 };
