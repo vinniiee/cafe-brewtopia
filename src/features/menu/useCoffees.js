@@ -4,28 +4,44 @@ import { getCoffees } from "../../services/apiCoffees";
 
 export default function useCoffees() {
   const [searchParams] = useSearchParams();
-  let filterBy = [];
-  const type = searchParams.get("type");
-  console.log(type);
-  if (type !== null && type !== "all") {
-    if (type === "iced brew") {
-      filterBy.push({ key: "served", value: "cold" });
+  let typeFilter;
+  
+  //  "type" Filter
+  const filterBy = searchParams.get("filterBy");
+  if (filterBy !== null && filterBy !== "all"){
+    if (filterBy === "iced brew") {
+      typeFilter = { key: "served", value: "cold" };
     } else {
-      filterBy.push({ key: "type", value: type.split(" ").at(-1) });
+      typeFilter = { key: "type", value: filterBy };
     }
   }
+
+  let cascadeFilters = [];
+
+  //  "withMilk" Filter
   const withMilk = searchParams.get("withMilk");
   if (withMilk !== null) {
-    filterBy.push({ key: "withMilk", value: withMilk });
+    cascadeFilters.push(withMilk);
   }
 
+  //  "served" Filter
+  const served = searchParams.get("served");
+  if (served !== null) {
+    cascadeFilters.push(served);
+  }
+
+  // Sort By
+  const sort = searchParams.get("sortBy")?.split("-");
   let sortBy;
 
+  if (sort) {
+    sortBy = { ascending: sort[1] === "asc", value: sort[0] };
+  }
   const { data, isLoading, error } = useQuery({
-    queryKey: ["coffees", type, withMilk],
-    queryFn: () => getCoffees({ filterBy, sortBy }),
+    queryKey: ["coffees", filterBy, withMilk,served,sort],
+    queryFn: () => getCoffees({ typeFilter, sortBy, cascadeFilters }),
     // onSuccess:()=>console.log("done!!")
   });
-  console.log(data);
+  // console.log(data);
   return { data, isLoading, error };
 }
