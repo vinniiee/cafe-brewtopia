@@ -7,9 +7,9 @@ export default function FilterCarousel() {
     { label: "All", param: "filterBy", value: "all" },
     { label: "Espresso", param: "filterBy", value: "espresso" },
     { label: "Cappuccino", param: "filterBy", value: "cappuccino" },
-    { label: "Caffe Latte", param: "filterBy", value: "latte" },
+    { label: "Caffè Latte", param: "filterBy", value: "latte" },
     { label: "Iced Brew", param: "filterBy", value: "iced brew" },
-    { label: "Cafe Mocha", param: "filterBy", value: "mocha" },
+    { label: "Caffè Mocha", param: "filterBy", value: "mocha" },
   ];
   const [searchParams, setSearchParams] = useSearchParams();
   let selected = searchParams.get("filterBy");

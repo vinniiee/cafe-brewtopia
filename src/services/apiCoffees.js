@@ -1,15 +1,44 @@
 import supabase from "./supabase";
 
+export const searchCoffees = async (term) => {
+  console.log("term", term);
+  if (term?.length > 3) {
+    const { data: fromName, error2 } = await supabase
+      .from("coffees")
+      .select()
+      .textSearch("name", term);
+    if (fromName.length > 0) {
+      return fromName;
+    }
+    const { data: fromDescription, error1 } = await supabase
+      .from("coffees")
+      .select()
+      .textSearch("description", term);
+
+    if (error1) {
+      console.log("Could not perform search!", error1.message);
+      throw new Error("Could not perform search!");
+    }
+    if (error2) {
+      console.log("Could not perform search!", error2.message);
+      throw new Error("Could not perform search!");
+    }
+
+    return fromDescription;
+  } else {
+    return [];
+  }
+};
+
 export const getCoffees = async ({ typeFilter, cascadeFilters, sortBy }) => {
   const query = supabase.from("coffees").select("*");
 
   //TYPE FILTER
   if (typeFilter) {
-    query.eq(typeFilter.key, typeFilter.value)
-    
+    query.eq(typeFilter.key, typeFilter.value);
   }
-  console.log("CascadeFilters",cascadeFilters);
-  if(cascadeFilters.length>0){
+  console.log("CascadeFilters", cascadeFilters);
+  if (cascadeFilters.length > 0) {
     query.contains("attributes", cascadeFilters);
   }
 
