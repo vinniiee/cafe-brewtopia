@@ -3,17 +3,14 @@ import {
   SearchBar,
   SortCarousel,
   CoffeeList,
+  CoffeeInfo,
 } from "../features/menu";
 import useCoffees from "../features/menu/useCoffees";
-import CoffeeInfo from "../features/menu/CoffeeInfo";
 import { useState } from "react";
 
 export default function Menu() {
   const [coffee, setCoffee] = useState(0);
-  const { data, error, isLoading } = useCoffees();
-  // console.log("Coffees", data);
-  // console.log("error", error);
-  // console.log("isLoading", isLoading);
+  const { data, isLoading } = useCoffees();
   if (isLoading || !data || data.length === 0) {
     return (
       <div
@@ -29,7 +26,7 @@ export default function Menu() {
             <FilterCarousel isLoading={isLoading} />
           </div>
         </div>
-        <CoffeeInfo index={coffee} coffee={data?data[coffee]:null} />
+        <CoffeeInfo index={coffee} coffee={data ? data[coffee] : null} />
         <div className="flex flex-col xl:-mt-20">
           <div className="relative z-10 -mb-6">
             <SortCarousel />
@@ -40,11 +37,7 @@ export default function Menu() {
         </div>
       </div>
     );
-  }
-  //  else if (!data || data.length === 0) {
-  //   return <div>No Coffee Found!</div>;
-  // }
-  else {
+  } else {
     console.log("data", data);
     return (
       <div
