@@ -15,13 +15,16 @@ export default function Menu() {
     <div
       className="relative flex flex-col w-full p-8 bg-cover sm:px-32"
       style={{ backgroundImage: "url(/wall.jpg)" }}
+      onClick={(e)=>console.log(e)}
     >
       <div className="absolute top-0 left-0 w-1/3 z-0">
         <img className="w-full" src="/ui/menu-art.svg" alt="menu-art" />
       </div>
-      <div className="flex flex-col lg:flex-row font-primary items-center w-full">
-        <SearchBar />
-        <div className="relative z-10flex justify-end items-end w-full lg:max-w-lg ">
+      <div className="flex flex-col lg:flex-row font-primary justify-between items-center w-full">
+        <div className="w-full">
+        <SearchBar setCoffee={setCoffee}/>
+        </div>
+        <div className="relative z-10 flex justify-end items-end w-full lg:w-1/2 lg:max-w-lg ">
           <FilterCarousel isLoading={isLoading} />
         </div>
       </div>
@@ -31,7 +34,7 @@ export default function Menu() {
           <SortCarousel />
         </div>
         <div className="flex space-x-4 z-10  bg-black/90 rounded  max-w-2xl w-full lg:w-fit min-h-[150px] min-w-[650px]  pt-0 px-4 ">
-          {data && <CoffeeList data={data} setCoffee={setCoffee} />}
+          {data && <CoffeeList data={data} setCoffee={setCoffee} selected={coffee} />}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
-import { useState } from "react";
 import Carousel from "../../ui/Carousel";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSortParams } from "../../store";
 
 export default function SortCarousel() {
   const categories = [
@@ -14,27 +15,38 @@ export default function SortCarousel() {
   ];
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const [selected, setSelected] = useState({
-    sortBy: searchParams.get("sortBy"),
-    withMilk: searchParams.get("withMilk"),
-    served: searchParams.get("served"),
-  });
+  const sortParams = useSelector((state) => state.sort);
+  const dispatch = useDispatch();
   let type = searchParams.get("filterBy");
   const handler = (item) => {
-    setSelected({ ...selected, [item.param]: item.value });
-    searchParams.set(item.param, item.value);
+    dispatch(
+      updateSortParams({
+        ...sortParams,
+        [item.param]: sortParams[item.param] === item.value ? "" : item.value,
+      })
+    );
+    let param = searchParams.get(item.param);
+    if (param === item.value) {
+      searchParams.delete(item.param);
+    } else {
+      searchParams.set(item.param, item.value);
+    }
+
     setSearchParams(searchParams);
   };
 
   const carouselItems = categories.map((item, i) => {
-    if (type === "iced brew" && (item.value === "hot" || item.value === "cold")) {
+    if (
+      type === "iced brew" &&
+      (item.value === "hot" || item.value === "cold")
+    ) {
       return;
     }
     return (
       <button
         onClick={() => handler(item)}
         className={`${
-          selected[item.param] === item.value
+          sortParams[item.param] === item.value
             ? "bg-dark-coffee"
             : "bg-light-coffee"
         } text-lg inline-block

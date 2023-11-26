@@ -37,9 +37,13 @@ export default function useCoffees() {
   if (sort) {
     sortBy = { ascending: sort[1] === "asc", value: sort[0] };
   }
+
+ // Search Params
+  const searchTerm = searchParams.get("search");
+
   const { data, isLoading, error } = useQuery({
-    queryKey: ["coffees", filterBy, withMilk,served,sort],
-    queryFn: () => getCoffees({ typeFilter, sortBy, cascadeFilters }),
+    queryKey: ["coffees", filterBy, withMilk,served,sort,searchTerm],
+    queryFn: () => getCoffees({ typeFilter, sortBy, cascadeFilters, searchTerm }),
     // onSuccess:()=>console.log("done!!")
   });
   // console.log(data);
