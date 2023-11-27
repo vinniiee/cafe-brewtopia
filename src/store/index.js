@@ -5,11 +5,26 @@ import {
   updateSortParams,
 } from "./slices/sortSlice";
 import { coffeesReducer, updateCofeeList } from "./slices/coffeeSlice";
+import {
+  addToCart,
+  cartReducer,
+  clearCart,
+  removeFromCart,
+} from "./slices/cartSlice";
 
 const store = configureStore({
   reducer: {
     sort: sortReducer,
-    coffes: coffeesReducer,
+    coffees: coffeesReducer,
+    cart: cartReducer,
   },
 });
-export { store, updateSortParams, resetSortParams, updateCofeeList };
+export {
+  store,
+  updateSortParams,
+  resetSortParams,
+  updateCofeeList,
+  addToCart,
+  clearCart,
+  removeFromCart,
+};

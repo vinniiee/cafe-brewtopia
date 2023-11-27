@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Carousel from "../../ui/Carousel";
 import useCoffees from "./useCoffees";
 import CoffeeListItem from "./CoffeeListItem";
+import { useSearchParams } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types
 export default function CoffeeList({ setCoffee, selected }) {
   const { data } = useCoffees();
+  useSearchParams();
+  useEffect(()=>{},[data]);
   const [active, setActive] = useState(true);
   // eslint-disable-next-line react/prop-types
   const items = data.map((item, i) => {

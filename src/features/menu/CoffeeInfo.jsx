@@ -2,12 +2,11 @@ import Card from "./Card";
 import MainImage from "./MainImage";
 
 // eslint-disable-next-line react/prop-types
-export default function CoffeeInfo({ index, coffee }) {
+export default function CoffeeInfo({   coffee }) {
   return (
     <div className="w-full flex justify-center lg:justify-between items-center">
       {/*eslint-disable-next-line react/prop-types */}
-      {coffee && <MainImage index={index} image={coffee.image} />}
-      <br/>
+      <MainImage  image={coffee?.image} />
 
       <div className="flex justify-end w-full">
         <Card coffee={coffee} />
