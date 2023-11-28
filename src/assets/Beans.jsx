@@ -10,7 +10,7 @@ export default function Beans(props) {
       viewBox="0 0 107 116"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      {...className}
+      className={className}
     >
       <path
         className={`fill-${color?color:'[#412215]'}`} 

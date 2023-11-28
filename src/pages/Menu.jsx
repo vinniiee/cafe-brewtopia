@@ -36,7 +36,7 @@ export default function Menu() {
         <div className="relative z-10 -mb-6">
           <SortCarousel />
         </div>
-        <div className="flex space-x-4 z-10  bg-black/90 rounded  max-w-2xl w-full lg:w-fit min-h-[150px] min-w-[650px]  pt-0 px-4 ">
+        <div className="flex space-x-4 z-10  bg-black/90 rounded  max-w-2xl w-full lg:w-fit min-h-[150px]   pt-0 px-4 ">
           {data && (
             <CoffeeList data={data} setCoffee={setCoffee} selected={coffee} />
           )}

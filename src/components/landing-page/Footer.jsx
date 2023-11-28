@@ -26,7 +26,7 @@ export default function Footer() {
             <p>Home</p>
             <p>Menu</p>
             <p>About Us</p>
-            <p>Conatct</p>
+            <p>Contact</p>
           </div>
         </div>
         <div className="flex flex-col justify-center  items-center space-y-4 lg:ml-16 ">

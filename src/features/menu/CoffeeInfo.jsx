@@ -8,7 +8,7 @@ export default function CoffeeInfo({   coffee }) {
       {/*eslint-disable-next-line react/prop-types */}
       <MainImage  image={coffee?.image} />
 
-      <div className="flex justify-end w-full">
+      <div className="flex justify-center lg:justify-end w-full">
         <Card coffee={coffee} />
       </div>
     </div>

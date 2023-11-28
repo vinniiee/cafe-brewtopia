@@ -2,11 +2,9 @@ import { useDispatch } from "react-redux";
 import Carousel from "../../ui/Carousel";
 import { useSearchParams } from "react-router-dom";
 import { resetSortParams } from "../../store";
-// import useCoffees from "./useCoffees";
 
 export default function FilterCarousel() {
   const dispatch  = useDispatch();
-  // const navigate = useNavigate();
   const categories = [
     { label: "All", param: "filterBy", value: "all" },
     { label: "Espresso", param: "filterBy", value: "espresso" },
@@ -25,7 +23,6 @@ export default function FilterCarousel() {
     searchParams.set(item.param, item.value);
     setSearchParams({ [item.param]: item.value });
     dispatch(resetSortParams())
-    // navigate(`/menu?filterBy=${item.value}`);
   };
 
   const carouselItems = categories.map((item) => (

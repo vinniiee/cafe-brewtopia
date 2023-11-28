@@ -28,13 +28,13 @@ export default function Card({ coffee }) {
     <div
       className="relative z-50 flex flex-col justify-center   bg-black/90 rounded
        font-primary text-white w-full tracking-wide
-       p-6 max-w-md"
+       p-6 md:max-w-lg"
     >
-      <div className="absolute top-1/5 left-0 w-full h-full z-0 opacity-30 overflow-hidden">
-        <Flame className="relative w-full bottom-1/5 -left-1/2 h-4/5" />
+      <div className="absolute top-1/5 left-0 w-full h-full z-10 opacity-30 overflow-hidden">
+        <Flame className="relative fill-coffee w-full bottom-1/5 -left-1/2 h-4/5" />
       </div>
-      <div className="absolute right-0 bottom-1/3 opacity-80">
-        <Beans size={125} color={"dark-coffee-2"} />
+      <div className="absolute right-0 bottom-1/3 opacity-30">
+        <Beans size={125} color={"coffee"} />
       </div>
       <div className=" flex w-full justify-between items-center z-10">
         <div className="relative w-1/5 bottom-4">
@@ -128,27 +128,27 @@ export default function Card({ coffee }) {
               {coffee ? "Venti" : "N/A"}
             </button>
           </div>
-          {cartItem?.sizes[size] > 0 ? (
+          {cartItem?.quantity[size] > 0 ? (
             <div className="flex justify-center items-center w-full font-primary -mt-2">
               <button
                 className="bg-dark-coffee p-1.5 px-8 text-lg rounded-l w-full"
-                onClick={() => removeItem(cartItem, size, dispatch)}
+                onClick={() => removeItem({cartItem, size, dispatch})}
               >
                 -
               </button>
               <p className="px-6 p-1.5 bg-light-coffee text-white text-lg w-full text-center">
-                {cartItem.sizes[size]}
+                {cartItem.quantity[size]}
               </p>
               <button
                 className="bg-dark-coffee p-1.5 px-8 text-lg rounded-r w-full"
-                onClick={() => addItem(cartItem, coffee, size, dispatch)}
+                onClick={() => addItem({cartItem, coffee, size, dispatch})}
               >
                 +
               </button>
             </div>
           ) : (
             <button
-              onClick={() => addItem(cartItem, coffee, size, dispatch)}
+              onClick={() => addItem({cartItem, coffee, size, dispatch})}
               className="bg-dark-coffee w-full p-1.5 px-4 -mt-2
                rounded text-lg tracking-wider 
                 duration-200 hover:scale-105 active:translate-y-0.5"

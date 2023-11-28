@@ -9,6 +9,7 @@ import {
   addToCart,
   cartReducer,
   clearCart,
+  deleteFromCart,
   removeFromCart,
 } from "./slices/cartSlice";
 
@@ -19,6 +20,7 @@ const store = configureStore({
     cart: cartReducer,
   },
 });
+
 export {
   store,
   updateSortParams,
@@ -27,4 +29,5 @@ export {
   addToCart,
   clearCart,
   removeFromCart,
+  deleteFromCart
 };
