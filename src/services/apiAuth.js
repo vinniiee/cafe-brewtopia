@@ -43,7 +43,15 @@ export async function getCurrentUser() {
   const { data, error } = await supabase.auth.getUser();
 
   if (error) throw new Error(error.message);
-  return data?.user;
+
+  const { data: userData, error: error2 } = await supabase
+    .from("customers")
+    .eq("auth", data.user.id)
+    .select();
+
+  if (error2) throw new Error(error2.message);
+
+  return userData;
 }
 
 export async function logout() {
