@@ -10,6 +10,7 @@ export function addItem({ cartItem, coffee, size, dispatch }) {
       price: coffee.price,
       image: coffee.image,
       quantity: [0, 0, 0],
+      served:coffee.served,
       itemQuantity: 1,
     };
     item.quantity[size] = 1;

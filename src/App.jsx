@@ -45,7 +45,7 @@ function App() {
             },
             {
               path: "/order/:id",
-              element: <Order />,
+              element: <Order />, 
               //   loader: orderLoader,
               errorElement: <Error />,
             },
