@@ -11,6 +11,7 @@ import {
   clearCart,
   deleteFromCart,
   removeFromCart,
+  updateCart,
 } from "./slices/cartSlice";
 
 const store = configureStore({
@@ -23,6 +24,7 @@ const store = configureStore({
 
 export {
   store,
+  updateCart,
   updateSortParams,
   resetSortParams,
   updateCofeeList,

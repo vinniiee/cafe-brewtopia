@@ -3,13 +3,24 @@ import Beans from "../../assets/Beans";
 import Flame from "../../assets/Flame";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, removeItem } from "../../utils/cartApi";
+// import { useUser } from "../authentication/useUser";
+// import { updateUserCart } from "../../services/apiUser";
 
 // eslint-disable-next-line react/prop-types
 export default function Card({ coffee }) {
+
+  // const {user} = useUser();
   const [size, setSize] = useState(1);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   console.log(cart);
+
+
+  // const uploadCart = async () => {
+  //   await updateUserCart({ cart, user });
+  // };
+  
+
   // eslint-disable-next-line react/prop-types
   const cartItem =
     // eslint-disable-next-line react/prop-types
@@ -30,6 +41,7 @@ export default function Card({ coffee }) {
        font-primary text-white w-full tracking-wide
        p-6 md:max-w-lg"
     >
+      
       <div className="absolute top-1/5 left-0 w-full h-full z-10 opacity-30 overflow-hidden">
         <Flame className="relative fill-coffee w-full bottom-1/5 -left-1/2 h-4/5" />
       </div>
@@ -109,6 +121,7 @@ export default function Card({ coffee }) {
             >
               {coffee ? "Small" : "N/A"}
             </button>
+            {/* <button onClick={uploadCart}>Cart</button> */}
             <button
               onClick={() => setSize(1)}
               className={`rounded p-1.5 px-2 w-1/3 cursor-pointer text-md hover:scale-105 duration-200 active:translate-y-0.5 ${

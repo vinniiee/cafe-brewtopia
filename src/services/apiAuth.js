@@ -15,7 +15,7 @@ export async function signup({ name, email, password }) {
 
   if (error2) throw new Error(error2.message);
 
-  return userData;
+  return userData[0];
 }
 
 export async function login({ email, password }) {
@@ -28,30 +28,34 @@ export async function login({ email, password }) {
 
   const { data: userData, error: error2 } = await supabase
     .from("customers")
-    .eq("auth", data.user.id)
-    .select();
+    .select("*")
+    .eq("auth", data.user.id);
 
   if (error2) throw new Error(error2.message);
-
-  return userData;
+  // console.log(userData);
+  return userData[0];
 }
 
 export async function getCurrentUser() {
-  const { data: session } = await supabase.auth.getSession();
-  if (!session.session) return null;
+  // const { data: session } = await supabase.auth.getSession();
+  // if (!session.session) return null;
 
   const { data, error } = await supabase.auth.getUser();
 
   if (error) throw new Error(error.message);
-
+  // console.log(data.user.id);
   const { data: userData, error: error2 } = await supabase
     .from("customers")
-    .eq("auth", data.user.id)
-    .select();
+    .select("*")
+    .eq("auth", data.user.id);
 
-  if (error2) throw new Error(error2.message);
+  // console.log("cfqwreqwa", userData);
+  if (error2) {
+    console.log(error2.message);
+    throw new Error(error2.message);
+  }
 
-  return userData;
+  return userData[0];
 }
 
 export async function logout() {

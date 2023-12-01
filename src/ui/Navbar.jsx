@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const cartItemsCount = useSelector((state) => state.cart.totalQuantity);
-  // console.log("sqecfetgvrcggscdcfwe", cartItemsCount);
   const navigate = useNavigate();
   const [y, setY] = useState(false);
   const [sticky, setSticky] = useState(false);
@@ -24,7 +23,9 @@ export default function Navbar() {
   return (
     <div
       style={{ zIndex: "200000" }}
-      className={`w-screen h-auto  px-8 pt-8 sm:pt-14 md:pt-14 pl-10 sm:pl-16  md:px-16   fixed drop-shadow-[10px_10px_4px_rgba(0,0,0,.4)]    ${
+      className={`w-screen h-auto  px-8 pt-8 sm:pt-14 md:pt-14 
+      pl-10 sm:pl-16  md:px-16
+      fixed drop-shadow-[10px_10px_4px_rgba(0,0,0,.4)]    ${
         sticky ? "top-0" : "-top-full"
       } z-50    transition-all duration-1000`}
     >
@@ -40,9 +41,11 @@ export default function Navbar() {
           onClick={() => navigate("/cart")}
         >
           {cartItemsCount > 0 && (
-            <p className="absolute top-0 right-0 rounded-full
+            <p
+              className="absolute top-0 right-0 rounded-full
              md:py-0.5 pt-0.5 h-5 w-5 md:h-6 md:w-6 text-center text-white
-             text-xs md:text-sm  bg-light-coffee">
+             text-xs md:text-sm  bg-light-coffee"
+            >
               {cartItemsCount}
             </p>
           )}
