@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+export const initialCartState = {
   items: [],
   totalPrice: 0,
   totalQuantity: 0,
@@ -8,10 +8,10 @@ const initialState = {
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState,
+  initialState:initialCartState,
   reducers: {
     clearCart() {
-      return initialState;
+      return initialCartState;
     },
     addToCart(state, action) {
       let { items } = state;

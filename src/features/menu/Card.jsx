@@ -2,7 +2,8 @@ import { useState } from "react";
 import Beans from "../../assets/Beans";
 import Flame from "../../assets/Flame";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItem } from "../../utils/cartApi";
+// import { addItem, removeItem } from "../../utils/cartApi";
+import useCart from "../../hooks/useCart";
 // import { useUser } from "../authentication/useUser";
 // import { updateUserCart } from "../../services/apiUser";
 
@@ -14,6 +15,7 @@ export default function Card({ coffee }) {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   console.log(cart);
+  const {addItem,removeItem} = useCart();
 
 
   // const uploadCart = async () => {
@@ -145,7 +147,7 @@ export default function Card({ coffee }) {
             <div className="flex justify-center items-center w-full font-primary -mt-2">
               <button
                 className="bg-dark-coffee p-1.5 px-8 text-lg rounded-l w-full"
-                onClick={() => removeItem({cartItem, size, dispatch})}
+                onClick={() => removeItem({cartItem, size, dispatch},cart.totalQuantity)}
               >
                 -
               </button>

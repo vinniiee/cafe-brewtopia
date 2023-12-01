@@ -1,4 +1,4 @@
-import { parseCartToItems } from "../../utils/cartApi";
+import useCart from "../../hooks/useCart";
 import CartItem from "./CartItem";
 
 // eslint-disable-next-line react/prop-types
@@ -10,14 +10,15 @@ export default function CartItemList({ cart }) {
   //   sizes: [0, 0, 0],
   //   itemQuantity: 1,
   // };
-  
+  const {parseCartToItems} = useCart();
   console.log("CART: ", cart);
   const items = parseCartToItems(cart);
   console.log("Parsed Cart", items);
   const itemList = items.map((item, i) => {
     // eslint-disable-next-line react/prop-types
     const cartItem = cart.items.find((a) => a.name === item.name);
-    return <CartItem key={i} cartItem={cartItem} item={item} />;
+    // eslint-disable-next-line react/prop-types
+    return <CartItem key={i} cartItem={cartItem} item={item} totalQuantity={cart.totalQuantity}/>;
   });
   return (
     <div className="flex flex-col justify-center items-center h-full w-full p-2">

@@ -7,17 +7,15 @@ import Authentication from "./pages/Authentication";
 import { useUser } from "./features/authentication/useUser";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { updateUserCart } from "./services/apiUser";
 import { updateCart } from "./store";
+import useCart from "./hooks/useCart";
 
 function App() {
   const { isAuthenticated, user } = useUser();
+  const { uploadCart } = useCart();
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   useEffect(() => {
-    const uploadCart = async () => {
-      await updateUserCart({ cart, user });
-    };
     if (user?.cart && cart.totalQuantity === 0) {
       // console.log("Cart", user.cart);
       dispatch(updateCart(user.cart));
@@ -34,7 +32,7 @@ function App() {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [dispatch, isAuthenticated, cart, user]);
+  }, [dispatch, isAuthenticated, cart, user, uploadCart]);
 
   const router = createBrowserRouter([
     {
@@ -74,9 +72,7 @@ function App() {
       ],
     },
   ]);
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;

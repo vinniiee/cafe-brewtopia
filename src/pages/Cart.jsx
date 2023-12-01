@@ -19,11 +19,11 @@ export default function Cart() {
         <h2 className="text-center text-white tracking-widest text-6xl font-thin md:text-7xl">
           YOUR CART
         </h2>
-        <div className="flex flex-col lg:flex-row lg:space-x-4 justify-center lg:items-start items-center w-full">
+        <div className={`flex flex-col lg:${cart.totalQuantity>0 && 'flex-row lg:space-x-4 lg:items-start'}  justify-center  items-center w-full`}>
           {cart.totalQuantity > 0 ? (
             <CartItemList cart={cart} />
           ) : (
-            <p className="text-white/80 m-8 mb-16">Your Cart is Empty.</p>
+            <p className="text-white/80  m-8 mb-16">Your Cart is Empty.</p>
           )}
           <div className="flex flex-col w-[250px] mt-8 justify-center space-y-1 lg:space-y-2 text-white/80 text-lg items-center">
             {cart.totalQuantity > 0 && (

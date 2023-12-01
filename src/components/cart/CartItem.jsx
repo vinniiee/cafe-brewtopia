@@ -1,11 +1,12 @@
 import { useDispatch } from "react-redux";
-import { addItem, deleteItem, removeItem } from "../../utils/cartApi";
 import Flame from "../../assets/Flame";
 import Beans from "../../assets/Beans";
+import useCart from "../../hooks/useCart";
 
 // eslint-disable-next-line react/prop-types
-export default function CartItem({ item, cartItem }) {
+export default function CartItem({ item, cartItem, totalQuantity }) {
   const dispatch = useDispatch();
+  const{addItem,removeItem,deleteItem} = useCart();
   // eslint-disable-next-line react/prop-types
   const { image, name, price, quantity, size, served } = item;
   const sizes = ["Small", "Grande", "Venti"];
@@ -26,8 +27,8 @@ export default function CartItem({ item, cartItem }) {
           <p
             className={`capitalize my-0.5  text-xs w-fit font-light
              p-1 px-2 rounded-full pt-1.5 leading-none ${
-              served === "hot" ? "bg-dark-coffee" : "bg-light-coffee"
-            }`}
+               served === "hot" ? "bg-dark-coffee" : "bg-light-coffee"
+             }`}
           >
             {served}
           </p>
@@ -39,7 +40,9 @@ export default function CartItem({ item, cartItem }) {
       <div className="relative z-50 flex justify-center items-center w-1/6">
         <button
           className="bg-dark-coffee px-1 rounded-l w-6"
-          onClick={() => removeItem({ cartItem, size, dispatch })}
+          onClick={() =>
+            removeItem({ cartItem, size, dispatch }, totalQuantity)
+          }
         >
           -
         </button>
@@ -62,7 +65,7 @@ export default function CartItem({ item, cartItem }) {
       >
         <button
           className=" border-2 rounded-full px-1.5 text-xs"
-          onClick={() => deleteItem({ cartItem, size, dispatch })}
+          onClick={() => deleteItem({ cartItem, size, dispatch },totalQuantity)}
         >
           x
         </button>
