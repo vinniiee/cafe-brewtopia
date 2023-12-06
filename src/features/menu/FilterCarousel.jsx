@@ -2,27 +2,23 @@ import { useDispatch } from "react-redux";
 import Carousel from "../../ui/Carousel";
 import { useSearchParams } from "react-router-dom";
 import { resetSortParams } from "../../store";
+import { useEffect } from "react";
+import { categories } from "../../data/categories";
 
 export default function FilterCarousel() {
-  const dispatch  = useDispatch();
-  const categories = [
-    { label: "All", param: "filterBy", value: "all" },
-    { label: "Espresso", param: "filterBy", value: "espresso" },
-    { label: "Cappuccino", param: "filterBy", value: "cappuccino" },
-    { label: "Caffè Latte", param: "filterBy", value: "latte" },
-    { label: "Iced Brew", param: "filterBy", value: "iced brew" },
-    { label: "Caffè Mocha", param: "filterBy", value: "mocha" },
-  ];
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
   let selected = searchParams.get("filterBy");
-  if (!selected) {
-    searchParams.set("filterBy", "all");
-    setSearchParams(searchParams);
-  }
+  useEffect(() => {
+    if (!selected) {
+      searchParams.set("filterBy", "all");
+      setSearchParams(searchParams);
+    }
+  });
   const handler = (item) => {
     searchParams.set(item.param, item.value);
     setSearchParams({ [item.param]: item.value });
-    dispatch(resetSortParams())
+    dispatch(resetSortParams());
   };
 
   const carouselItems = categories.map((item) => (

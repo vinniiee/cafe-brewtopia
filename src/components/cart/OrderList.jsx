@@ -1,9 +1,11 @@
 import Beans from "../../assets/Beans";
 import Flame from "../../assets/Flame";
-import { parseCartToItems } from "../../utils/cartApi";
+import useCart from "../../hooks/useCart";
+// import { parseCartToItems } from "../../utils/cartApi";
 
 // eslint-disable-next-line react/prop-types
 export default function OrderList({ cart }) {
+  const {parseCartToItems} = useCart();
   const items = parseCartToItems(cart);
   console.log("Parsed Cart", items);
   const itemList = items.map((item, i) => {

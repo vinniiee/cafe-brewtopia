@@ -1,3 +1,4 @@
+import { initialCartState } from "../store/slices/cartSlice";
 import supabase from "./supabase";
 
 export async function signup({ name, email, password }) {
@@ -10,7 +11,14 @@ export async function signup({ name, email, password }) {
 
   const { data: userData, error: error2 } = await supabase
     .from("customers")
-    .insert([{ name, email, auth: data.user.id }])
+    .insert([
+      {
+        name,
+        email,
+        auth: data.user.id,
+        cart: { ...initialCartState, userId: data.user.id },
+      },
+    ])
     .select();
 
   if (error2) throw new Error(error2.message);
@@ -39,7 +47,7 @@ export async function login({ email, password }) {
 export async function getCurrentUser() {
   // const { data: session } = await supabase.auth.getSession();
   // if (!session.session) return null;
-  console.log("fetching user...")
+  console.log("fetching user...");
   const { data, error } = await supabase.auth.getUser();
 
   if (error) throw new Error(error.message);

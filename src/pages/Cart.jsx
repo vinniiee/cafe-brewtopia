@@ -6,7 +6,7 @@ import { clearCart } from "../store";
 export default function Cart() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart.data);
   return (
     <div
       className="w-screen h-screen bg-cover flex justify-center p-4 items-center font-primary tracking-wide"
@@ -19,7 +19,11 @@ export default function Cart() {
         <h2 className="text-center text-white tracking-widest text-6xl font-thin md:text-7xl">
           YOUR CART
         </h2>
-        <div className={`flex flex-col lg:${cart.totalQuantity>0 && 'flex-row lg:space-x-4 lg:items-start'}  justify-center  items-center w-full`}>
+        <div
+          className={`flex flex-col lg:${
+            cart.totalQuantity > 0 && "flex-row lg:space-x-4 lg:items-start"
+          }  justify-center  items-center w-full`}
+        >
           {cart.totalQuantity > 0 ? (
             <CartItemList cart={cart} />
           ) : (
@@ -31,7 +35,7 @@ export default function Cart() {
                 className="p-2 active:translate-y-0.5 hover:bg-dark-coffee
            rounded-sm w-full tracking-widest duration-200 bg-light-coffee "
                 onClick={() => {
-                  dispatch(clearCart());
+                  dispatch(clearCart({cart}));
                   navigate("/menu");
                 }}
               >
@@ -58,3 +62,4 @@ export default function Cart() {
     </div>
   );
 }
+

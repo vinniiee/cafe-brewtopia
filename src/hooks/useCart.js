@@ -1,28 +1,30 @@
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteFromCart, removeFromCart } from "../store";
-import { useSelector } from "react-redux";
-import { useUser } from "../features/authentication/useUser";
-import { updateUserCart } from "../services/apiUser";
-import { initialCartState, updateCart } from "../store/slices/cartSlice";
-import { useQueryClient } from "@tanstack/react-query";
+// import { useSelector } from "react-redux";
+// import { useUser } from "../features/authentication/useUser";
+// import { updateUserCart } from "../services/apiUser";
+// import { useQueryClient } from "@tanstack/react-query";
+// import { initialCartState, updateCart } from "../store/slices/cartSlice";
 
 export default function useCart() {
-  const { user } = useUser();
-  const query = useQueryClient();
-  const cart = useSelector((state) => state.cart);
-  const uploadCart = async () => {
-    // console.log("cart1111",cart)
-    await updateUserCart({ cart, user });
-  };
-  const uploadInitialCart = async () => {
-    // console.log("cart1111",cart)
-    await updateUserCart({ cart: initialCartState, user });
-    query.invalidateQueries({
-      queryKey: ["user"],
-    });
-  };
-  return { addItem, removeItem, deleteItem, parseCartToItems, uploadCart };
+  
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.data);
 
-  function addItem({ cartItem, coffee, size, dispatch }) {
+  // const { user } = useUser();
+  //   const query = useQueryClient();
+  //   const cart = useSelector((state) => state.cart);
+  //   const {data:cart} =  useFetchCartQuery(user);
+  //   console.log("cart in useCart",    cart);
+  //   const [addToCart,temp1] = useAddToCartMutation();
+  //   console.log(addToCart);
+  //   const [removeFromCart,temp12] = useDeductFromCartMutation();
+  //   const [deleteFromCart,temp3] = useRemoveFromCartMutation();
+
+  return { addItem, removeItem, deleteItem, parseCartToItems };
+
+  function addItem({ cartItem, coffee, size }) {
+    // cart.itemQuantity =10;
     let item;
     if (cartItem) {
       item = cartItem;
@@ -37,21 +39,14 @@ export default function useCart() {
       };
       item.quantity[size] = 1;
     }
-    dispatch(addToCart({ coffee: item, size }));
+    dispatch(addToCart({cart,size,coffee:item}));
   }
-  async function removeItem({ cartItem, size, dispatch }, totalQuantity) {
-    console.log("total", totalQuantity);
-    if (totalQuantity === 1) {
-      uploadInitialCart().then(() => dispatch(updateCart(initialCartState)));
-    }else
-    dispatch(removeFromCart({ coffee: cartItem, size }));
+  async function removeItem({ cartItem, size }) {
+    dispatch(removeFromCart({ coffee: cartItem, size, cart }));
   }
 
-  function deleteItem({ cartItem, size, dispatch },totalQuantity) {
-    if(cartItem.quantity[size] === totalQuantity){
-        uploadInitialCart().then(() => dispatch(updateCart(initialCartState)));
-    }else
-    dispatch(deleteFromCart({ coffee: cartItem, size }));
+  function deleteItem({ cartItem, size }) {
+    dispatch(deleteFromCart({ coffee: cartItem, size, cart }));
   }
 
   function parseCartToItems(cart) {

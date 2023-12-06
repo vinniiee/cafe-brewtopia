@@ -5,14 +5,12 @@ import {
   updateSortParams,
 } from "./slices/sortSlice";
 import { coffeesReducer, updateCofeeList } from "./slices/coffeeSlice";
-import {
-  addToCart,
-  cartReducer,
-  clearCart,
-  deleteFromCart,
-  removeFromCart,
-  updateCart,
-} from "./slices/cartSlice";
+import { cartReducer } from "./slices/cartSlice";
+import { addToCart } from "./thunks/addToCart";
+import { deleteFromCart } from "./thunks/deleteFromCart";
+import { fetchCart } from "./thunks/fetchCart";
+import { removeFromCart } from "./thunks/removeFromCart";
+import { clearCart } from "./thunks/clearCart";
 
 const store = configureStore({
   reducer: {
@@ -22,14 +20,19 @@ const store = configureStore({
   },
 });
 
+// setupListeners(store.dispatch);
+
+// export * from "./apis/cartApi";
+export * from "./slices/cartSlice";
+
 export {
   store,
-  updateCart,
   updateSortParams,
   resetSortParams,
   updateCofeeList,
+  fetchCart,
   addToCart,
   clearCart,
   removeFromCart,
-  deleteFromCart
+  deleteFromCart,
 };

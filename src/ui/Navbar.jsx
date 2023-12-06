@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function Navbar() {
-  const cartItemsCount = useSelector((state) => state.cart.totalQuantity);
+  const cartItemsCount = useSelector((state) => state.cart.data.totalQuantity);
   const navigate = useNavigate();
   const [y, setY] = useState(false);
   const [sticky, setSticky] = useState(false);

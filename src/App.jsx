@@ -4,36 +4,8 @@ import AppLayout from "./ui/AppLayout";
 import { Cart, CreateOrder, Error, Home, Menu, Order } from "./pages";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Authentication from "./pages/Authentication";
-import { useUser } from "./features/authentication/useUser";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { updateCart } from "./store";
-import useCart from "./hooks/useCart";
 
 function App() {
-  const { isAuthenticated, user } = useUser();
-  const { uploadCart } = useCart();
-  const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    if (user?.cart && cart.totalQuantity === 0) {
-      // console.log("Cart", user.cart);
-      dispatch(updateCart(user.cart));
-    }
-
-    const handleBeforeUnload = (event) => {
-      if (isAuthenticated) {
-        event.preventDefault();
-        // event.returnValue = "";
-        uploadCart();
-      }
-    };
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, [dispatch, isAuthenticated, cart, user, uploadCart]);
-
   const router = createBrowserRouter([
     {
       element: <AppLayout />,

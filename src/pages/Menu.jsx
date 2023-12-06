@@ -17,7 +17,7 @@ export default function Menu() {
   
   return (
     <div
-      className="relative flex flex-col w-full p-8 bg-cover sm:px-32"
+      className="relative flex flex-col justify-center items-around min-w-screen min-h-screen w-full p-8 bg-cover sm:px-32"
       style={{ backgroundImage: "url(/wall.jpg)" }}
     >
       <div className="absolute top-0 left-0 w-1/3 z-0">

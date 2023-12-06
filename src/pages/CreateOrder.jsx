@@ -4,7 +4,7 @@ import DeliveryOptions from "../components/order/DeliveryOptions";
 import PaymentDetails from "../components/order/PaymentDetails";
 
 export default function CreateOrder() {
-  const cart = useSelector((state) => state.cart);
+  const cart = useSelector((state) => state.cart.data);
 
   return (
     <div

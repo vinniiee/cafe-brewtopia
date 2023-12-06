@@ -1,74 +1,102 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { addToCart } from "../thunks/addToCart";
+import { clearCart } from "../thunks/clearCart";
+import { removeFromCart } from "../thunks/removeFromCart";
+import { deleteFromCart } from "../thunks/deleteFromCart";
+import { fetchCart } from "../thunks/fetchCart";
 
 export const initialCartState = {
   items: [],
   totalPrice: 0,
   totalQuantity: 0,
+  userId: null,
+};
+const initialState = {
+  data: initialCartState,
+  isLoading: false,
+  error: null,
 };
 
 const cartSlice = createSlice({
   name: "cart",
-  initialState:initialCartState,
-  reducers: {
-    clearCart() {
-      return initialCartState;
-    },
-    addToCart(state, action) {
-      let { items } = state;
-      const { coffee, size } = action.payload;
-      let existingItemIndex = items.findIndex(
-        (item) => item.name === coffee.name
-      );
+  initialState,
+  extraReducers(builder) {
+    // fetchCart
+    builder.addCase(fetchCart.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.isLoading = false;
+      state.error = null;
+      state.data = action.payload;
+    });
+    builder.addCase(fetchCart.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+    builder.addCase(fetchCart.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
 
-      if (existingItemIndex !== -1) {
-        let existingItem = items[existingItemIndex];
+    // addToCart
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.data = action.payload;
+    });
+    builder.addCase(addToCart.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+    builder.addCase(addToCart.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
 
-        existingItem.quantity[size] += 1;
-        existingItem.itemQuantity += 1;
-        // existingItem.itemPrice += coffee.price[size];
-        items[existingItemIndex] = existingItem;
-      } else {
-        // eslint-disable-next-line no-unused-vars
-        items.push({ ...coffee });
-      }
-      state.totalPrice += coffee.price[size];
-      state.totalQuantity += 1;
-    },
-    removeFromCart(state, action) {
-      const { items } = state;
-      const { coffee, size } = action.payload;
-      let index = items.findIndex((item) => item.name === coffee.name);
+    // clearCart
+    builder.addCase(clearCart.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.data = action.payload;
+    });
+    builder.addCase(clearCart.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+    builder.addCase(clearCart.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
 
-      if (items[index].itemQuantity === 1) {
-        state.items.pop(index);
-      } else {
-        state.items[index].itemQuantity -= 1;
-        state.items[index].quantity[size] -= 1;
-      }
-      state.totalPrice -= coffee.price[size];
-      state.totalQuantity -= 1;
-    },
-    deleteFromCart(state, action) {
-      const { items } = state;
-      const { coffee, size } = action.payload;
-      let index = items.findIndex((item) => item.name === coffee.name);
+    //removeFromCart
+    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.data = action.payload;
+    });
+    builder.addCase(removeFromCart.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+    builder.addCase(removeFromCart.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
 
-      state.totalPrice -= coffee.price[size] * coffee.quantity[size];
-      state.totalQuantity -= coffee.quantity[size];
-      // state.items[index].itemQuantity -= coffee.quantity[size];
-      if(coffee.quantity[size]===coffee.itemQuantity){
-        state.items.pop(index);
-      }else{
-        state.items[index].itemQuantity -= coffee.quantity[size];
-        state.items[index].quantity[size]=0;
-      }
-    },
-    updateCart(state,action){
-      console.log("payload",action.payload)
-      return action.payload;
-    }
+    //deleteFromCart
+    builder.addCase(deleteFromCart.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+      state.data = action.payload;
+    });
+    builder.addCase(deleteFromCart.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error;
+    });
+    builder.addCase(deleteFromCart.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
   },
 });
 
-export const { clearCart, removeFromCart, addToCart,deleteFromCart,updateCart } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

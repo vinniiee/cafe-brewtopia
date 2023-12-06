@@ -1,32 +1,34 @@
 import { useState } from "react";
 import Beans from "../../assets/Beans";
 import Flame from "../../assets/Flame";
-import { useDispatch, useSelector } from "react-redux";
-// import { addItem, removeItem } from "../../utils/cartApi";
+// import { useDispatch,  } from "react-redux";
 import useCart from "../../hooks/useCart";
+// import { useFetchCartQuery } from "../../store";
+// import { useUser } from "../authentication/useUser";
+import {
+  //  useDispatch,
+    useSelector } from "react-redux";
+// import { addItem, removeItem } from "../../utils/cartApi";
 // import { useUser } from "../authentication/useUser";
 // import { updateUserCart } from "../../services/apiUser";
 
 // eslint-disable-next-line react/prop-types
 export default function Card({ coffee }) {
-
-  // const {user} = useUser();
+  const { addItem, removeItem } = useCart();
   const [size, setSize] = useState(1);
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  // const dispatch = useDispatch();
+  const {data:cart,error} = useSelector((state) => state.cart);
   console.log(cart);
-  const {addItem,removeItem} = useCart();
-
+  console.log(error);
 
   // const uploadCart = async () => {
   //   await updateUserCart({ cart, user });
   // };
-  
 
   // eslint-disable-next-line react/prop-types
   const cartItem =
     // eslint-disable-next-line react/prop-types
-    coffee && cart.items.find((item) => item.name === coffee?.name);
+    coffee && cart?.items.find((item) => item.name === coffee?.name);
   console.log(cartItem);
   // eslint-disable-next-line react/prop-types
   let ratingDisplay;
@@ -43,7 +45,6 @@ export default function Card({ coffee }) {
        font-primary text-white w-full tracking-wide
        p-6 md:max-w-lg"
     >
-      
       <div className="absolute top-1/5 left-0 w-full h-full z-10 opacity-30 overflow-hidden">
         <Flame className="relative fill-coffee w-full bottom-1/5 -left-1/2 h-4/5" />
       </div>
@@ -147,7 +148,7 @@ export default function Card({ coffee }) {
             <div className="flex justify-center items-center w-full font-primary -mt-2">
               <button
                 className="bg-dark-coffee p-1.5 px-8 text-lg rounded-l w-full"
-                onClick={() => removeItem({cartItem, size, dispatch},cart.totalQuantity)}
+                onClick={() => removeItem({ cartItem, size })}
               >
                 -
               </button>
@@ -156,14 +157,14 @@ export default function Card({ coffee }) {
               </p>
               <button
                 className="bg-dark-coffee p-1.5 px-8 text-lg rounded-r w-full"
-                onClick={() => addItem({cartItem, coffee, size, dispatch})}
+                onClick={() => addItem({ cartItem, coffee, size })}
               >
                 +
               </button>
             </div>
           ) : (
             <button
-              onClick={() => addItem({cartItem, coffee, size, dispatch})}
+              onClick={() => addItem({ cartItem, coffee, size })}
               className="bg-dark-coffee w-full p-1.5 px-4 -mt-2
                rounded text-lg tracking-wider 
                 duration-200 hover:scale-105 active:translate-y-0.5"
