@@ -16,8 +16,8 @@ export default function Cart() {
         className="flex flex-col justify-center items-center rounded min-h-[400px]
        bg-black/90 p-8 py-16 w-full space-y-8 max-w-4xl md:p-10"
       >
-        <h2 className="text-center text-white tracking-widest text-6xl font-thin md:text-7xl">
-          YOUR CART
+        <h2 className="sm:text-left text-center sm:self-start text-white/95 capitalize border-b-2 tracking-wide text-3xl sm:ml-2   md:text-5xl">
+          your cart
         </h2>
         <div
           className={`flex flex-col lg:${

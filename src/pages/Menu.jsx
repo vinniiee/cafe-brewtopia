@@ -11,7 +11,7 @@ import { useState } from "react";
 export default function Menu() {
   const [coffee, setCoffee] = useState(0);
   const { data, isLoading } = useCoffees();
-  if(coffee >= data?.length){
+  if(data?.length>0 && coffee >= data?.length){
     setCoffee(0);
   }
   
@@ -37,7 +37,7 @@ export default function Menu() {
           <SortCarousel />
         </div>
         <div className="flex space-x-4 z-10  bg-black/90 rounded  max-w-2xl w-full lg:w-fit min-h-[150px]   pt-0 px-4 ">
-          {data && (
+          {data?.length>0 && (
             <CoffeeList data={data} setCoffee={setCoffee} selected={coffee} />
           )}
         </div>

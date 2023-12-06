@@ -56,7 +56,7 @@ export default function Card({ coffee }) {
           <div className="absolute z-10 w-full">
             <img className="w-full" src="/ui/rating-art.svg" alt="rating" />
           </div>
-          <p className="relative z-20 text-8xl bottom-4 left-2 font-semibold">
+          <p className="relative z-20 text-7xl sm:text-8xl bottom-4 left-2 font-semibold">
             {/*eslint-disable-next-line react/prop-types */}
             {ratingDisplay || "0.0"}
           </p>
