@@ -21,9 +21,6 @@ export default function Card({ coffee }) {
   console.log(cart);
   console.log(error);
 
-  // const uploadCart = async () => {
-  //   await updateUserCart({ cart, user });
-  // };
 
   // eslint-disable-next-line react/prop-types
   const cartItem =

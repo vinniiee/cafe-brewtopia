@@ -13,6 +13,7 @@ export function useUser() {
   console.log(user);
   useEffect(()=>{
     if (user?.auth) {
+      console.log("fetching cart...")
       dispatch(fetchCart(user));
     }
   },[dispatch, user])

@@ -4,9 +4,9 @@ import useCart from "../../hooks/useCart";
 // import { parseCartToItems } from "../../utils/cartApi";
 
 // eslint-disable-next-line react/prop-types
-export default function OrderList({ cart }) {
+export default function OrderList({ order }) {
   const {parseCartToItems} = useCart();
-  const items = parseCartToItems(cart);
+  const items = parseCartToItems(order);
   console.log("Parsed Cart", items);
   const itemList = items.map((item, i) => {
     // eslint-disable-next-line react/prop-types
