@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Carousel from "../../ui/Carousel";
-import useCoffees from "./useCoffees";
+import useCoffees from "../../features/menu/useCoffees";
 import CoffeeListItem from "./CoffeeListItem";
 import { useSearchParams } from "react-router-dom";
 
