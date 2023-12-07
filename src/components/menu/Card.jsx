@@ -40,7 +40,7 @@ export default function Card({ coffee }) {
     <div
       className="relative z-50 flex flex-col justify-center   bg-black/90 rounded
        font-primary text-white w-full tracking-wide
-       p-6 md:max-w-lg"
+       p-6 sm:max-w-md lg:max-w-sm xl:max-w-md"
     >
       <div className="absolute top-1/5 left-0 w-full h-full z-10 opacity-30 overflow-hidden">
         <Flame className="relative fill-coffee w-full bottom-1/5 -left-1/2 h-4/5" />

@@ -17,7 +17,8 @@ export default function SearchBar() {
   let searchResults = data?.map((item) => {
     return <SearchResultsItem key={item.name} item={item} />;
   });
-  const [searchParams, setSearchParams] = useSearchParams();
+  // eslint-disable-next-line no-unused-vars
+  const [_, setSearchParams] = useSearchParams();
   // searchParams.get();
   function submitHandler(e) {
     e.preventDefault();
