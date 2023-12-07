@@ -21,7 +21,8 @@ export default {
       night:'#111312',
       'light-coffee':'#9f7447',
       'dark-coffee':'#4C2819',
-      'dark-coffee-2':'#412215'
+      'dark-coffee-2':'#412215',
+      error:'#ff4500'
     },
     fontFamily: {
       'primary': ['"Yanone Kaffeesatz"', 'sans-serif'],

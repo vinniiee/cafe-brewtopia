@@ -1,9 +1,9 @@
-import Card from "./Card";
-import CoffeeInfo from "./CoffeeInfo";
-import CoffeeList from "./CoffeeList";
-import FilterCarousel from "./FilterCarousel";
-import SearchBar from "./SearchBar";
-import SortCarousel from "./SortCarousel";
+import Card from "../../components/menu/Card";
+import CoffeeInfo from "../../components/menu/CoffeeInfo";
+import CoffeeList from "../../components/menu/CoffeeList";
+import FilterCarousel from "../../components/menu/FilterCarousel";
+import SearchBar from "../../components/menu/SearchBar";
+import SortCarousel from "../../components/menu/SortCarousel";
 
 export {
   Card,

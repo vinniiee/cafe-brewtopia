@@ -1,4 +1,4 @@
-import OrderForm from "../order/OrderForm";
+import OrderForm from "../order/UserDetails";
 
 export default function UserDetails() {
   return (

@@ -2,15 +2,16 @@ import { useSelector } from "react-redux";
 import OrderList from "../components/cart/OrderList";
 import DeliveryOptions from "../components/order/DeliveryOptions";
 import PaymentDetails from "../components/order/PaymentDetails";
+import { useState } from "react";
 
 export default function CreateOrder() {
   const cart = useSelector((state) => state.cart.data);
-
+  const [location,setLocation] = useState('restaurant');
   return (
     <div
       className="flex flex-col  justify-start items-center
-       h-screen w-screen bg-cover font-primary
-       p-8 overflow-scroll"
+       min-h-screen w-screen bg-cover font-primary
+       p-8 "
       style={{ backgroundImage: "url(/wall.jpg)" }}
     >
       <div className="bg-black/90 w-full">
@@ -19,10 +20,10 @@ export default function CreateOrder() {
        py-16 p-8 sm:p-16 rounded  flex flex-col md:justify-around md:px-20   md:space-x-8 md:flex-row space-y-8 font-primary"
       >
         <div className="w-full flex flex-col max-w-lg  space-y-6 justify-start items-center">
-          <OrderList cart={cart} />
-          <DeliveryOptions />
+          <OrderList order={cart} />
+          <DeliveryOptions location={location} setLocation={setLocation} />
         </div>
-        <PaymentDetails />
+        <PaymentDetails location={location} />
       </div>
       </div>
     </div>

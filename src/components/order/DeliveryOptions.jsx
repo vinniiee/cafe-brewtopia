@@ -1,15 +1,13 @@
-import { useState } from "react";
-
-export default function DeliveryOptions() {
-  const [value, setValue] = useState("");
-  console.log("edqwdqfqwcfwrcfrwfraw", value);
+// eslint-disable-next-line react/prop-types
+export default function DeliveryOptions({ location, setLocation }) {
+  console.log("edqwdqfqwcfwrcfrwfraw", location);
   return (
     <div className="flex flex-col w-full space-y-2 text-white uppercase  tracking-wide">
       <div
         className={`w-full rounded flex justify-between items-center
-        ${value==='restaurant'?'bg-coffee':'bg-light-coffee'}
+        ${location === "restaurant" ? "bg-coffee" : "bg-light-coffee"}
           p-4 cursor-pointer duration-200`}
-        onClick={() => setValue("restaurant")}
+        onClick={() => setLocation("restaurant")}
       >
         <label htmlFor="restaurant">at restaurant</label>
         <div className="flex justify-center  items-center space-x-2 ">
@@ -18,8 +16,8 @@ export default function DeliveryOptions() {
             type="radio"
             id="restaurant"
             name="delivery"
-            value={value}
-            checked={value === "restaurant"}
+            value={location}
+            checked={location === "restaurant"}
             onChange={(e) => console.log(e.target)}
             className="accent-coffee checked:scale-125  duration-200"
           />
@@ -27,9 +25,9 @@ export default function DeliveryOptions() {
       </div>
       <div
         className={`w-full rounded flex justify-between items-center
-            ${value==='home'?'bg-coffee':'bg-light-coffee'}
+            ${location === "home" ? "bg-coffee" : "bg-light-coffee"}
             p-4 cursor-pointer duration-200`}
-        onClick={() => setValue("home")}
+        onClick={() => setLocation("home")}
       >
         <label htmlFor="home">at home</label>
         <div className="flex justify-center items-center space-x-2">
@@ -38,8 +36,8 @@ export default function DeliveryOptions() {
             type="radio"
             id="restaurant"
             name="delivery"
-            value={value}
-            checked={value === "home"}
+            value={location}
+            checked={location === "home"}
             onChange={(e) => console.log(e.target)}
             className="accent-coffee checked:scale-125  duration-200"
           />

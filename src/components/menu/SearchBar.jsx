@@ -1,7 +1,7 @@
 import { useState } from "react";
-import useSearchCoffees from "./useSearchCoffees";
-import SearchResultsItem from "../../components/menu/SearchResultsItem";
-import SearchResults from "../../components/menu/SearchResults";
+import useSearchCoffees from "../../features/menu/useSearchCoffees";
+import SearchResultsItem from "./SearchResultsItem";
+import SearchResults from "./SearchResults";
 import { useSearchParams } from "react-router-dom";
 
 export default function SearchBar() {
@@ -18,7 +18,7 @@ export default function SearchBar() {
     return <SearchResultsItem key={item.name} item={item} />;
   });
   const [searchParams, setSearchParams] = useSearchParams();
-
+  // searchParams.get();
   function submitHandler(e) {
     e.preventDefault();
     if (searchResults.length > 0) {
