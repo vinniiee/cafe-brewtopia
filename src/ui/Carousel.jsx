@@ -25,7 +25,7 @@ export default function Carousel({ children, showArrows }) {
     <>
       {showArrows && (
         <span
-          className="absolute -bottom-0 left-16 z-20 md:relative md:bottom-0 md:left-0"
+          className="absolute -bottom-0 left-16 z-20  md:bottom-0 md:left-0"
           onClick={() =>
             controls.start({
               x: x.get() + sliderStep < 0 ? x.get() + sliderStep : 0,
@@ -53,7 +53,7 @@ export default function Carousel({ children, showArrows }) {
       </div>
       {showArrows && (
         <span
-          className="absolute bottom-0 xs:bottom-0 right-16  z-20 md:relative md:bottom-0 md:right-0"
+          className="absolute bottom-0 xs:bottom-0 right-16  z-20  md:bottom-0 md:right-0"
           onClick={() =>
             controls.start({
               x: -1 * Math.min(-1 * (x.get() - sliderStep), mask + 32),

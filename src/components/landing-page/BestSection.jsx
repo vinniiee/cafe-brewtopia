@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 export default function BestSection() {
   const navigate = useNavigate();
   return (
-    <div className="relative flex flex-col  justify-center items-center md:flex-row w-screen py-64 px-32 overflow-hidden  ">
-      <div className="relative hidden sm:flex justify-center items-center md:w-1/2 p-4  z-20 drop-shadow-[35px_35px_8px_rgba(0,0,0,.4)] ">
+    <div className="relative flex flex-col space-y-6 md:space-y-0  justify-center items-center md:flex-row md:space-x-8 w-screen py-64 px-32 overflow-hidden  ">
+      <div className="relative hidden sm:flex justify-center items-center w-2/3 lg:w-1/2 p-4  z-20 drop-shadow-[35px_35px_8px_rgba(0,0,0,.4)] ">
         <motion.img
           initial={{ x: 200, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
@@ -17,13 +17,13 @@ export default function BestSection() {
           alt="best"
         />
       </div>
-      <div className="relative md:w-1/2  flex flex-col justify-center items-center z-20 ">
-        <div className="flex flex-col md:w-3/4   justify-center items-center md:items-start space-y-8 text-center md:text-left">
+      <div className="relative lg:w-1/2 md:w-1/3 flex flex-col justify-center items-center z-20 ">
+        <div className="flex flex-col lg:w-3/4 w-full   justify-center items-center md:items-start space-y-8 text-center md:text-left">
           <motion.h2
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 }}
-            className="text-3xl leading-none sm:text-6xl capitalize tracking-wide text-white font-primary "
+            className="text-3xl leading-none sm:text-4xl lg:text-6xl capitalize tracking-wide text-white font-primary "
           >
             Discover the best{" "}
             <span className="text-night font-semibold">coffee</span>.
@@ -32,7 +32,7 @@ export default function BestSection() {
             initial={{ y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 1,duration:2 }}
-            className="text-md sm:text-xl text-white leading-tight  sm:w-4/5 font-primary font-light tracking-wide"
+            className="text-md sm:text-lg lg:text-xl text-white leading-tight  sm:w-4/5 font-primary font-light tracking-wide"
           >
             We are a company that makes & distributes delicious drinks. Our main
             product is made with a secret recipe and available in stores

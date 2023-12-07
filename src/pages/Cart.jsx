@@ -9,7 +9,7 @@ export default function Cart() {
   const cart = useSelector((state) => state.cart.data);
   return (
     <div
-      className="w-screen h-screen bg-cover flex justify-center p-4 items-center font-primary tracking-wide"
+      className="w-screen h-screen bg-cover flex justify-center pt-32 p-4 items-center font-primary tracking-wide"
       style={{ backgroundImage: "url(/wall.jpg)" }}
     >
       <div

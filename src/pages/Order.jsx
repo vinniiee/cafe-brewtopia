@@ -3,9 +3,6 @@ import { formatDate } from "../utils/formatDate";
 import OrderList from "../components/cart/OrderList";
 
 export default function Order() {
-  // const cart = useSelector((state) => state.cart);
-  // let cart={};
-  // cart.items=items;
   let date = new Date();
   const order = {
     id: "1",

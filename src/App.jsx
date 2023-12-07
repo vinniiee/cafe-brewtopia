@@ -4,6 +4,7 @@ import AppLayout from "./ui/AppLayout";
 import { Cart, CreateOrder, Error, Home, Menu, Order } from "./pages";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Authentication from "./pages/Authentication";
+import User from "./pages/User";
 
 function App() {
   const router = createBrowserRouter([
@@ -36,6 +37,12 @@ function App() {
             {
               path: "/order/:id",
               element: <Order />,
+              //   loader: orderLoader,
+              errorElement: <Error />,
+            },
+            {
+              path: "/user",
+              element: <User/>,
               //   loader: orderLoader,
               errorElement: <Error />,
             },
