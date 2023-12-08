@@ -5,8 +5,23 @@ import { Cart, CreateOrder, Error, Home, Menu, Order } from "./pages";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Authentication from "./pages/Authentication";
 import User from "./pages/User";
+import { useEffect } from "react";
+import { useUser } from "./features/authentication/useUser";
+import { useDispatch } from "react-redux";
+import { fetchCart, login } from "./store";
+// import { logout } from "./services/apiAuth";
 
 function App() {
+  const { user } = useUser();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // logout();
+    if (user) {
+      dispatch(login(user));
+      dispatch(fetchCart(user));
+    }
+  }, [user, dispatch]);
+
   const router = createBrowserRouter([
     {
       element: <AppLayout />,
@@ -42,7 +57,7 @@ function App() {
             },
             {
               path: "/user",
-              element: <User/>,
+              element: <User />,
               //   loader: orderLoader,
               errorElement: <Error />,
             },

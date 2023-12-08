@@ -11,20 +11,19 @@ import { deleteFromCart } from "./thunks/deleteFromCart";
 import { fetchCart } from "./thunks/fetchCart";
 import { removeFromCart } from "./thunks/removeFromCart";
 import { clearCart } from "./thunks/clearCart";
+import authSlice from "./slices/authSlice";
 
 const store = configureStore({
   reducer: {
     sort: sortReducer,
     coffees: coffeesReducer,
     cart: cartReducer,
+    auth: authSlice,
   },
 });
 
-// setupListeners(store.dispatch);
-
-// export * from "./apis/cartApi";
 export * from "./slices/cartSlice";
-
+export * from "./slices/authSlice";
 export {
   store,
   updateSortParams,

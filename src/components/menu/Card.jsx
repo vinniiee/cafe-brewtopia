@@ -58,7 +58,7 @@ export default function Card({ coffee }) {
             {ratingDisplay || "0.0"}
           </p>
         </div>
-        <div className="relative h-full flex sm:w-[200px] justify-center  bottom-10">
+        <div className="relative h-full flex  justify-center  bottom-10">
           {/*eslint-disable-next-line react/prop-types */}
           {coffee ? (
             <img

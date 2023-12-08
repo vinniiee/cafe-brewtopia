@@ -3,6 +3,7 @@ import { getCurrentUser } from "../../services/apiAuth";
 import { useDispatch } from "react-redux";
 import { fetchCart } from "../../store/thunks/fetchCart";
 import { useEffect } from "react";
+import { login } from "../../store";
 
 export function useUser() {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export function useUser() {
     if (user?.auth) {
       console.log("fetching cart...")
       dispatch(fetchCart(user));
+      dispatch(login(user));
     }
   },[dispatch, user])
 

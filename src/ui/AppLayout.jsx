@@ -1,6 +1,9 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function AppLayout() {
   return (
@@ -8,6 +11,9 @@ export default function AppLayout() {
       <Navbar />
       <Outlet />
       <Footer />
+      <div style={{zIndex:'10000'}}>
+      <ToastContainer theme="dark"/>
+      </div>
     </div>
   );
 }

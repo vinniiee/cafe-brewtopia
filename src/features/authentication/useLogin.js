@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { login as loginApi } from "../../services/apiAuth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export function useLogin() {
   const queryClient = useQueryClient();
@@ -8,12 +9,15 @@ export function useLogin() {
 
   const { mutate: login, isLoading:loggingIn } = useMutation({
     mutationFn: async ({ email, password }) => loginApi({ email, password }),
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       console.log(data);
-      queryClient.setQueryData(["user"], data.user);
-      navigate("/menu", { replace: true });
+      toast.success("Successfully Logged In!");
+      await queryClient.invalidateQueries({queryKey:["user"]});
+      navigate("/menu", { replace: true })
     },
     onError: (err) => {
+      
+      toast.error("Could not be Logged In!");
       console.log("ERROR", err);
     },
   });

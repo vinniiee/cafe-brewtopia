@@ -26,7 +26,7 @@ export default function Navbar() {
   console.log("location", location.pathname);
   return (
     <div
-      style={{ zIndex: "200000" }}
+      style={{ zIndex: "9999" }}
       className={`w-screen h-auto  px-8 pt-8 sm:pt-14 md:pt-14 
       pl-8 sm:pl-16  md:px-16
       fixed drop-shadow-[10px_10px_4px_rgba(0,0,0,.4)]    ${

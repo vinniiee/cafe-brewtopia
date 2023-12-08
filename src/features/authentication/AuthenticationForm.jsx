@@ -4,22 +4,31 @@ import { useLogin } from "./useLogin";
 import { useSignup } from "./useSignup";
 import Flame from "../../assets/Flame";
 import Beans from "../../assets/Beans";
-
+import Spinner from "../../ui/Spinner";
 export default function AuthenticationForm() {
   const [register, setRegister] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  // const navigate = useNavigate();
+  // const { isAuthenticated } = useUser();
   const { login, loggingIn } = useLogin();
   const { signup, signingUp } = useSignup();
+
+  console.log("Signing up...", signingUp);
+
+  // useEffect(() => {
+  //   if (isAuthenticated) navigate(-1,{replace:true});
+  // }, [isAuthenticated, navigate]);
 
   const isLoading = loggingIn || signingUp;
   async function submitHandler(e) {
     e.preventDefault();
     if (register) {
       signup({ name, email, password });
-      // console.log(data);
+      // setRegister(false);
+      // dispatch(login(user));
+      // console.log(data); 
     } else {
       login({ email, password });
       // console.log(data);
@@ -55,79 +64,83 @@ export default function AuthenticationForm() {
         <div className="h-full max-w-md">
           <img className="w-full h-full " src="/named-logo.svg" />
         </div>
-        <form
-          onSubmit={submitHandler}
-          className="flex flex-col w-full 
+        {!isLoading ? (
+          <form
+            onSubmit={submitHandler}
+            className="flex flex-col w-full 
         p-4 sm:p-8 space-y-2 sm:space-y-4 justify-center items-end
          bg-dark-coffee rounded-md  shadow-lg
            tracking-wide"
-        >
-          <AnimatePresence>
-            {register && (
-              <motion.div
-                key="name"
-                initial={{ height: "0", opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: "0", opacity: 0 }}
-                className="flex flex-col w-full justify-center items-start"
-              >
-                <label className="" id="name">
-                  Full Name
-                </label>
-                <input
-                  className="w-full rounded-sm text-night
+          >
+            <AnimatePresence>
+              {register && (
+                <motion.div
+                  key="name"
+                  initial={{ height: "0", opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: "0", opacity: 0 }}
+                  className="flex flex-col w-full justify-center items-start"
+                >
+                  <label className="" id="name">
+                    Full Name
+                  </label>
+                  <input
+                    className="w-full rounded-sm text-night
                     p-1.5 mt-1 text-lg outline-none px-3"
-                  name="name"
-                  type="text"
-                  autoFocus
-                  required
-                  minLength={6}
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <div className="flex flex-col w-full justify-center items-start">
-            <label className="" id="email">
-              Email Address
-            </label>
-            <input
-              className="w-full rounded-sm text-night
+                    name="name"
+                    type="text"
+                    autoFocus
+                    required
+                    minLength={6}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <div className="flex flex-col w-full justify-center items-start">
+              <label className="" id="email">
+                Email Address
+              </label>
+              <input
+                className="w-full rounded-sm text-night
             p-1.5 mt-1 text-lg outline-none px-3"
-              name="email"
-              type="email"
-              required
-              autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="flex flex-col w-full justify-center items-start">
-            <label className="" id="password">
-              Password
-            </label>
-            <input
-              className="w-full rounded-sm text-night
+                name="email"
+                type="email"
+                required
+                autoFocus
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="flex flex-col w-full justify-center items-start">
+              <label className="" id="password">
+                Password
+              </label>
+              <input
+                className="w-full rounded-sm text-night
             p-1.5 mt-1 text-lg outline-none px-3"
-              name="password"
-              type="password"
-              required
-              value={password}
-              minLength={8}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            className="bg-light-coffee text-lg tracking-wide
+                name="password"
+                type="password"
+                required
+                value={password}
+                minLength={8}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <button
+              className="bg-light-coffee text-lg tracking-wide
            rounded  p-2 px-4 hover:opacity-80 hover:shadow-2xl
             shadow duration-200 active:-translate-y-1"
-          >
-            <p className="leading-none pt-1">
-              {isLoading ? "Loading..." : register ? "SIGN UP" : "SIGN IN"}
-            </p>
-          </button>
-        </form>
+            >
+              <p className="leading-none pt-1">
+                {isLoading ? "Loading..." : register ? "SIGN UP" : "SIGN IN"}
+              </p>
+            </button>
+          </form>
+        ) : (
+          <Spinner />
+        )}
       </div>
       <Flame
         className={`absolute bottom-0 ${
