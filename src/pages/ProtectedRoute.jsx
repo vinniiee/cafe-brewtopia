@@ -5,12 +5,12 @@ import { useSelector } from "react-redux";
 import { useUser } from "../features/authentication/useUser";
 
 export default function ProtectedRoute() {
-  const { isAuthenticated } = useSelector((state) => state.auth);
-  const { user } = useUser();
+  const { isAuthenticated ,isLoading} = useSelector((state) => state.auth);
+  const { user} = useUser();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isAuthenticated && !user?.auth) navigate("/authentication");
-  }, [isAuthenticated, navigate, user]);
+    if ( !isLoading && !isAuthenticated && !user?.auth) navigate("/authentication");
+  }, [isAuthenticated, navigate,isLoading, user]);
 
   return <Outlet />;
 }

@@ -30,7 +30,7 @@ export default function CartItemList({ cart }) {
         <p className="w-1/6 text-center">Total</p>
         <p className="opacity-0 w-1/12 ">placehoder</p>
       </div>
-      <div className="flex justify-center items-start max-h-[500px] overflow-scroll w-full">
+      <div className="flex justify-center items-start  max-h-[460px]  md:max-h-[350px] overflow-scroll w-full">
         <div className="flex flex-col justify-between items-center
           w-full ">
           {itemList}

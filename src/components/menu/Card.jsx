@@ -7,20 +7,22 @@ import useCart from "../../hooks/useCart";
 // import { useUser } from "../authentication/useUser";
 import {
   //  useDispatch,
-    useSelector } from "react-redux";
+  useSelector,
+} from "react-redux";
+import { useNavigate } from "react-router-dom";
 // import { addItem, removeItem } from "../../utils/cartApi";
 // import { useUser } from "../authentication/useUser";
 // import { updateUserCart } from "../../services/apiUser";
 
 // eslint-disable-next-line react/prop-types
 export default function Card({ coffee }) {
+  const navigate = useNavigate();
   const { addItem, removeItem } = useCart();
   const [size, setSize] = useState(1);
   // const dispatch = useDispatch();
-  const {data:cart,error} = useSelector((state) => state.cart);
+  const { data: cart, error } = useSelector((state) => state.cart);
   console.log(cart);
   console.log(error);
-
 
   // eslint-disable-next-line react/prop-types
   const cartItem =
@@ -115,7 +117,8 @@ export default function Card({ coffee }) {
           <div className="flex justify-between space-x-2 items-center py-8 w-full">
             <button
               onClick={() => setSize(0)}
-              className={`rounded p-2 px-2 w-1/6 cursor-pointer text-sm hover:scale-105 duration-200 active:translate-y-0.5  ${
+              className={`rounded p-2 px-2 w-1/6 cursor-pointer text-sm 
+              hover:scale-105 duration-200 active:bg-coffee active:-translate-y-0.5  ${
                 size === 0 ? "bg-dark-coffee" : "bg-light-coffee"
               }`}
             >
@@ -124,7 +127,8 @@ export default function Card({ coffee }) {
             {/* <button onClick={uploadCart}>Cart</button> */}
             <button
               onClick={() => setSize(1)}
-              className={`rounded p-1.5 px-2 w-1/3 cursor-pointer text-md hover:scale-105 duration-200 active:translate-y-0.5 ${
+              className={`rounded p-1.5 px-2 w-1/3 cursor-pointer text-md 
+              hover:scale-105 duration-200 active:bg-coffee active:-translate-y-0.5 ${
                 size === 1 ? "bg-dark-coffee" : "bg-light-coffee"
               }`}
             >
@@ -134,41 +138,72 @@ export default function Card({ coffee }) {
               onClick={() => setSize(2)}
               className={`rounded p-1 px-2 w-1/2
                cursor-pointer  text-lg hover:scale-105
-                duration-200 active:translate-y-0.5 ${
-                  size === 2 ? "bg-dark-coffee" : "bg-light-coffee"
-                }`}
+               active:bg-coffee duration-200 active:-translate-y-0.5 ${
+                 size === 2 ? "bg-dark-coffee" : "bg-light-coffee"
+               }`}
             >
               {coffee ? "Venti" : "N/A"}
             </button>
           </div>
-          {cartItem?.quantity[size] > 0 ? (
-            <div className="flex justify-center items-center w-full font-primary -mt-2">
+          {/* {cartItem?.quantity[size] > 0 ? ( */}
+          <div className="flex justify-between items-center w-full h-[30px] space-x-2">
+            {cartItem?.quantity[size] > 0 ? (
+              <>
+                <div className="flex justify-center items-center w-full font-primary -mt-2">
+                  <button
+                    className="bg-dark-coffee p-1.5 px-4 sm:px-8 text-lg rounded-l w-full"
+                    onClick={() => removeItem({ cartItem, size })}
+                  >
+                    -
+                  </button>
+                  <p className="px-6 p-1.5 bg-light-coffee text-white text-lg w-full text-center">
+                    {cartItem.quantity[size]}
+                  </p>
+                  <button
+                    className="bg-dark-coffee p-1.5 px-4 sm:px-8 text-lg rounded-r w-full"
+                    onClick={() => addItem({ cartItem, coffee, size })}
+                  >
+                    +
+                  </button>
+                </div>
+                <div className="w-full">
+                  <button
+                  onClick={()=>navigate('/cart')}
+                    className="bg-dark-coffee rounded active:-translate-y-0.5 duration-200
+                 active:bg-coffee tracking-wide flex justify-start space-x-4 items-center  mb-2 p-2 text-center w-full"
+                  >
+                    <div className="h-5 w-1/4 mb-0.5">
+                      <img
+                        className="w-full h-full"
+                        src="/ui/bag-icon.svg"
+                        alt="cart"
+                      />
+                    </div>
+                    <p className="whitespace-nowrap">Go To Cart</p>
+                  </button>
+                </div>
+              </>
+            ) : (
               <button
-                className="bg-dark-coffee p-1.5 px-8 text-lg rounded-l w-full"
-                onClick={() => removeItem({ cartItem, size })}
-              >
-                -
-              </button>
-              <p className="px-6 p-1.5 bg-light-coffee text-white text-lg w-full text-center">
-                {cartItem.quantity[size]}
-              </p>
-              <button
-                className="bg-dark-coffee p-1.5 px-8 text-lg rounded-r w-full"
                 onClick={() => addItem({ cartItem, coffee, size })}
-              >
-                +
-              </button>
-            </div>
-          ) : (
-            <button
-              onClick={() => addItem({ cartItem, coffee, size })}
-              className="bg-dark-coffee w-full p-1.5 px-4 -mt-2
+                className="bg-dark-coffee w-full p-1.5 px-4 -mt-2
                rounded text-lg tracking-wider 
                 duration-200 hover:scale-105 active:translate-y-0.5"
-            >
-              Add
-            </button>
-          )}
+              >
+                Add
+              </button>
+            )}
+          </div>
+          {/* // ) : ( */}
+          {/* //   <button */}
+          {/* //     onClick={() => addItem({ cartItem, coffee, size })} */}
+          {/* //     className="bg-dark-coffee w-full p-1.5 px-4 -mt-2
+          //      rounded text-lg tracking-wider 
+          //       duration-200 hover:scale-105 active:translate-y-0.5" */}
+          {/* //   > */}
+          {/* //     Add */}
+          {/* //   </button> */}
+          {/* )} */}
         </div>
       </div>
     </div>

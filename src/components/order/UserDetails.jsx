@@ -37,7 +37,10 @@ function UserDetails({ children,location }) {
     <UserDetailsContext.Provider
       value={{ register, formHandler,location, errors, user }}
     >
+      <div className="flex flex-col bg-dark-coffee rounded
+      p-8 w-full max-w-sm text-white justify-around items-center space-y-4">
       {children}
+      </div>
     </UserDetailsContext.Provider>
   );
 }
@@ -106,7 +109,7 @@ function InputFields() {
             </div>
           </div>
         </div>
-        {location === "home" && (
+        {location !== "restaurant" && (
           <div className="flex flex-col w-full justify-start items-start ">
             <label className="text-sm">Delivery Address</label>
             <div className="relative w-full">
@@ -148,7 +151,7 @@ function Submit({ children }) {
   return (
     <button
       onClick={formHandler}
-      className="uppercase bg-black text-xl sm:text-2xl tracking-wider rounded-sm w-full p-3 "
+      className="uppercase bg-black text-white text-xl sm:text-2xl tracking-wider rounded-sm w-full p-3 "
     >
       {children}
     </button>

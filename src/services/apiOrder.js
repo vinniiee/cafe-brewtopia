@@ -60,15 +60,30 @@ export const fetchOrderById = async (id) => {
   const { data, error } = await supabase
     .from("orders")
     .select("*")
-    .eq('id', id)
+    .eq("id", id)
     .select();
 
-    if (error) {
-        console.log(error);
-        throw new Error(error.message);
-    }
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
 
-    console.log(data[0]);
-    return data[0];
-    
+  console.log(data[0]);
+  return data[0];
+};
+
+export const fetchAllOrders = async (userId) => {
+  const { data, error } = await supabase
+    .from("orders")
+    .select("*")
+    .eq("placedBy", userId)
+    .select();
+
+  if (error) {
+    console.log(error);
+    throw new Error(error.message);
+  }
+
+  console.log("All orders", data);
+  return data;
 };

@@ -2,10 +2,17 @@ import { useSelector } from "react-redux";
 import OrderList from "../components/cart/OrderList";
 import DeliveryOptions from "../components/order/DeliveryOptions";
 import PaymentDetails from "../components/order/PaymentDetails";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateOrder() {
   const cart = useSelector((state) => state.cart.data);
+  const navigate = useNavigate();
+  useEffect(()=>{
+    if(cart?.totalQuantity===0){
+      navigate(-1,{replace:true});
+    }
+  })
   const [location,setLocation] = useState('restaurant');
   return (
     <div
