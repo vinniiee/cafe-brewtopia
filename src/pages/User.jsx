@@ -12,8 +12,8 @@ export default function User() {
   return (
     <div
       className="flex flex-col  justify-start items-center
-         h-screen w-screen bg-cover font-primary
-         p-8 overflow-scroll"
+         min-h-screen w-screen bg-cover font-primary
+         p-8 py-32"
       style={{ backgroundImage: "url(/wall.jpg)" }}
     >
       <div className="bg-black/90 w-full">

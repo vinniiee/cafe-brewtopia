@@ -16,6 +16,7 @@ export const placeOrder = async ({ user, cart, servingDetails }) => {
     cart,
     status: status.PENDING,
     eta: eta.toISOString(),
+    email:user.email,
     ...servingDetails,
   };
 
@@ -77,6 +78,7 @@ export const fetchAllOrders = async (userId) => {
     .from("orders")
     .select("*")
     .eq("placedBy", userId)
+    .order("created_at",{ascending:false})
     .select();
 
   if (error) {

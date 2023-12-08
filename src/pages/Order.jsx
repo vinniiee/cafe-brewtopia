@@ -20,7 +20,10 @@ export default function Order() {
     // eta = "" +eta;
     minutesLeft = ("" + (eta - Date.now()) / 60000 + 1).split(".")[0];
   }
-  let status = updateStatus(fetchedOrder);
+  let status;
+  if(fetchedOrder){
+    status=updateStatus(fetchedOrder)
+  }
   return (
     <div
       className="flex  justify-center items-center
@@ -54,7 +57,7 @@ export default function Order() {
                 className="bg-dark-coffee p-4 py-2 uppercase rounded-sm
            font-medium tracking-widest shadow"
               >
-                {status}
+                {status?status:'Pending'}
               </p>
             </div>
             <div className="w-full flex justify-between shadow items-center p-4 rounded font-light text-sm  bg-dark-coffee">

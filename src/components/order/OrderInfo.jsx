@@ -1,9 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/formatDate";
 import { updateStatus } from "../../utils/updateStatus";
 import OrderList from "../cart/OrderList";
 
 // eslint-disable-next-line react/prop-types
 export default function OrderInfo({ order }) {
+  const navigate = useNavigate();
   // eslint-disable-next-line react/prop-types
   const { eta, cart, id, location } = order;
   let minutesLeft;
@@ -21,7 +23,7 @@ export default function OrderInfo({ order }) {
         className="w-full flex justify-between 
       items-center"
       >
-        <button className="sm:text-2xl text-md whitespace-nowrap tracking-tight border-b-2 hover:tracking-wide hover:-translate-y-0.5 border-transparent hover:border-white duration-200">
+        <button onClick={()=>navigate(`/order/${id}`)} className="sm:text-2xl text-md whitespace-nowrap tracking-tight border-b-2 hover:tracking-wide hover:-translate-y-0.5 border-transparent hover:border-white duration-200">
           <span className="sm:inline hidden">Info for</span> Order ID#{" "}
           <span className="uppercase">{`${id
             // eslint-disable-next-line react/prop-types
