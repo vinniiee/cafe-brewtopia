@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 const UserDetailsContext = createContext();
 
 // eslint-disable-next-line react/prop-types
-function UserDetails({ children,location }) {
+function UserDetails({ children, location }) {
   const { user } = useUser();
-  const cart = useSelector(state=>state.cart.data);
+  const cart = useSelector((state) => state.cart.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {
@@ -22,12 +22,11 @@ function UserDetails({ children,location }) {
 
   async function handler(data) {
     console.log("form-data", data);
-    const servingDetails = {...data};
-    const order = await placeOrder({user,cart,servingDetails});
-    console.log("Placed Order: ",order)
-    dispatch(clearCart({cart}));
+    const servingDetails = { ...data };
+    const order = await placeOrder({ user, cart, servingDetails });
+    console.log("Placed Order: ", order);
+    dispatch(clearCart({ cart }));
     navigate(`/order/${order.id}`);
-
   }
   const formHandler = () => {
     handleSubmit(handler)();
@@ -35,11 +34,13 @@ function UserDetails({ children,location }) {
 
   return (
     <UserDetailsContext.Provider
-      value={{ register, formHandler,location, errors, user }}
+      value={{ register, formHandler, location, errors, user }}
     >
-      <div className="flex flex-col bg-dark-coffee rounded
-      p-8 w-full max-w-sm text-white justify-around items-center space-y-4">
-      {children}
+      <div
+        className="flex flex-col bg-dark-coffee rounded
+      p-8 w-full max-w-sm text-white justify-around items-center space-y-4"
+      >
+        {children}
       </div>
     </UserDetailsContext.Provider>
   );
@@ -47,7 +48,7 @@ function UserDetails({ children,location }) {
 
 // eslint-disable-next-line react/prop-types
 function InputFields() {
-  const { user, register, errors, formHandler,location } =
+  const { user, register, errors, formHandler, location } =
     useContext(UserDetailsContext);
 
   return (
@@ -83,32 +84,36 @@ function InputFields() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col w-full justify-start items-start ">
-          <label className="text-sm">Email Address</label>
-          <div className="relative w-full">
-            <input
-              className="w-full text-night shadow rounded-sm
+        {location === undefined && (
+          <div className="flex flex-col w-full justify-start items-start ">
+            <label className="text-sm">Email Address</label>
+            <div className="relative w-full">
+              <input
+                className="w-full text-night shadow rounded-sm
                 bg-white p-2 pr-10 border-none outline-none
                 text-lg tracking-wide"
-              // type="email"
-              defaultValue={user?.email}
-              {...register("email", {
-                required: true,
-                pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
-              })}
-            />
-            <p
-              className={`text-light-coffee text-sm mt-1  ${
-                errors.email ? "opacity-100" : "opacity-0"
-              } `}
-            >
-              {errors.email?.type==='pattern'?'Invalid email address.':'This field is required.'}
-            </p>
-            <div className="absolute right-3 bottom-10">
-              <img className="w-4" src="/ui/check.svg" />
+                // type="email"
+                defaultValue={user?.email}
+                {...register("email", {
+                  required: true,
+                  pattern: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                })}
+              />
+              <p
+                className={`text-light-coffee text-sm mt-1  ${
+                  errors.email ? "opacity-100" : "opacity-0"
+                } `}
+              >
+                {errors.email?.type === "pattern"
+                  ? "Invalid email address."
+                  : "This field is required."}
+              </p>
+              <div className="absolute right-3 bottom-10">
+                <img className="w-4" src="/ui/check.svg" />
+              </div>
             </div>
           </div>
-        </div>
+        )}
         {location !== "restaurant" && (
           <div className="flex flex-col w-full justify-start items-start ">
             <label className="text-sm">Delivery Address</label>

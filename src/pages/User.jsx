@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import OrderList from "../components/cart/OrderList";
 import UserDetails from "../components/order/UserDetails";
 import useAllOrders from "../features/orders/useAllOrders";
+import OrdersList from "../components/order/OrdersList";
 
 export default function User() {
   const cart = useSelector((state) => state.cart.data);
@@ -22,9 +22,10 @@ export default function User() {
          py-16 p-8 sm:p-16 rounded  flex flex-col md:justify-around md:px-20   md:space-x-8 md:flex-row space-y-8 font-primary"
         >
           <div className="w-full flex flex-col max-w-lg  space-y-6 justify-start items-center">
-            <OrderList order={cart} />
+            <OrdersList/>
           </div>
           <UserDetails>
+            <h1 className="text-4xl text-white/95 border-b-2  pb-2 text-left w-full tracking-wide">Personal Details</h1>
             <UserDetails.InputFields />
             <UserDetails.Submit>SUbmit changes</UserDetails.Submit>
           </UserDetails>
