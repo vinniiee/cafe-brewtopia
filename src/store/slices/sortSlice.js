@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+export const initialSortState = {
   sortBy: "",
   withMilk: "",
   served: "",
@@ -8,13 +8,13 @@ const initialState = {
 
 const sortSlice = createSlice({
   name: "sort",
-  initialState,
+  initialState:initialSortState,
   reducers: {
     updateSortParams(state, action) {
       return { ...state, ...action.payload };
     },
     resetSortParams() {
-      return initialState;
+      return initialSortState;
     },
   },
 });

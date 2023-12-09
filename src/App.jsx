@@ -9,13 +9,13 @@ import { useEffect } from "react";
 import { useUser } from "./features/authentication/useUser";
 import { useDispatch } from "react-redux";
 import { fetchCart, login } from "./store";
-import { logout } from "./services/apiAuth";
+// import { logout } from "./services/apiAuth";
 
 function App() {
   const { user } = useUser();
   const dispatch = useDispatch();
   useEffect(() => {
-    logout();
+    // logout();
     if (user) {
       dispatch(login(user));
       dispatch(fetchCart(user));

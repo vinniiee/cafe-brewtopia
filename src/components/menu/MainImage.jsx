@@ -8,7 +8,7 @@ export default function MainImage() {
   return (
     <div className="w-full hidden relative lg:flex justify-center  mb-32">
       <AnimatePresence mode="wait">
-        {!isLoading && (
+        {!isLoading && coffee && (
           <motion.div
             variants={{
               initial: {
@@ -24,7 +24,7 @@ export default function MainImage() {
                 rotate: 0,
                 scale: 1,
                 opacity: 1,
-                transition:{ duration: 1.5 }
+                transition: { duration: 1.5 },
               },
               exit: {
                 x: "-30vw",
@@ -32,25 +32,20 @@ export default function MainImage() {
                 rotate: 30,
                 scale: 0.2,
                 opacity: 0,
-                transition:{ duration: 1 }
+                transition: { duration: 1 },
               },
             }}
             key={coffee?.image}
             initial="initial"
             animate="animate"
             exit="exit"
-            // transition={{ duration: 1.5 }}
-            // key={image}
             className="relative h-full w-full z-10 xl:-left-32  flex justify-center"
           >
-            {/* <AnimatePresence mode="popLayout"> */}
-
             <img
               className="max-h-[350px] max-w-[350px] drop-shadow-[30px_15px_5px_rgba(0,0,0,0.4)]"
               src={coffee?.image}
               alt="coffe-main"
             />
-            {/* </AnimatePresence> */}
           </motion.div>
         )}
       </AnimatePresence>

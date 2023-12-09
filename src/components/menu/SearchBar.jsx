@@ -3,11 +3,16 @@ import useSearchCoffees from "../../features/menu/useSearchCoffees";
 import SearchResultsItem from "./SearchResultsItem";
 import SearchResults from "./SearchResults";
 import { useSearchParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { updateSortParams } from "../../store";
+import { initialSortState } from "../../store/slices/sortSlice";
 
 export default function SearchBar() {
+
+  const dispatch = useDispatch();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [focus, setFocus] = useState(false);
-  // const [showResults,setShowResults] = useState(false);
   const { data, isLoading } = useSearchCoffees(searchTerm);
   const loading = isLoading && searchTerm.length > 3;
   const handler = async (e) => {
@@ -23,8 +28,10 @@ export default function SearchBar() {
   function submitHandler(e) {
     e.preventDefault();
     if (searchResults.length > 0) {
+      
       setSearchParams({ search: searchTerm });
       setFocus(false);
+      dispatch(updateSortParams(initialSortState));
     }
   }
 

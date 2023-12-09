@@ -17,7 +17,9 @@ export default function SortCarousel() {
   const [searchParams, setSearchParams] = useSearchParams();
   const sortParams = useSelector((state) => state.sort);
   const dispatch = useDispatch();
+
   let type = searchParams.get("filterBy");
+
   const handler = (item) => {
     dispatch(
       updateSortParams({
