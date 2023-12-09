@@ -3,12 +3,12 @@ import { AnimatePresence, motion } from "framer-motion";
 // eslint-disable-next-line react/prop-types
 export default function MainImage({ image }) {
   return (
-    <AnimatePresence mode="popLayout">
-      <div className="w-full hidden relative lg:flex justify-center  mb-12">
-        <motion.div
-          key={image}
-          className="relative h-full w-full z-10 xl:-left-32  flex justify-center  "
-        >
+    <div className="w-full hidden relative lg:flex justify-center  mb-32">
+      <div
+        key={image}
+        className="relative h-full w-full z-10 xl:-left-32  flex justify-center"
+      >
+        <AnimatePresence mode="popLayout">
           {image && (
             <motion.img
               initial={{
@@ -27,13 +27,13 @@ export default function MainImage({ image }) {
                 opacity: 0,
               }}
               transition={{ duration: 1.5 }}
-              className=" max-h-[350px] max-w-[350px] drop-shadow-[30px_15px_5px_rgba(0,0,0,0.4)]"
+              className="max-h-[350px] max-w-[350px] drop-shadow-[30px_15px_5px_rgba(0,0,0,0.4)]"
               src={image}
               alt="coffe-main"
             />
           )}
-        </motion.div>
+        </AnimatePresence>
       </div>
-    </AnimatePresence>
+    </div>
   );
 }
