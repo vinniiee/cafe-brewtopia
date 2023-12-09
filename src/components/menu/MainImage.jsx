@@ -7,14 +7,14 @@ export default function MainImage() {
   const { coffee, isLoading } = useContext(CoffeeContext);
   return (
     <div className="w-full hidden relative lg:flex justify-center  mb-32">
-      <AnimatePresence mode="popLayout">
+      <AnimatePresence mode="wait">
         {!isLoading && (
           <motion.div
             variants={{
               initial: {
-                x: "20vw",
+                x: "25vw",
                 y: "-100vh",
-                rotate: -100,
+                rotate: -90,
                 scale: 0.2,
                 opacity: 0,
               },
@@ -27,12 +27,12 @@ export default function MainImage() {
                 transition:{ duration: 1.5 }
               },
               exit: {
-                x: "-100vw",
+                x: "-30vw",
                 y: "20vh",
-                rotate: 90,
+                rotate: 30,
                 scale: 0.2,
                 opacity: 0,
-                transition:{ duration: 1.5 }
+                transition:{ duration: 1 }
               },
             }}
             key={coffee?.image}
