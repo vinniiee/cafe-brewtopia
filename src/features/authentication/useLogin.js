@@ -11,9 +11,11 @@ export function useLogin() {
     mutationFn: async ({ email, password }) => loginApi({ email, password }),
     onSuccess: async (data) => {
       console.log(data);
-      toast.success("Successfully Logged In!");
+      
       await queryClient.invalidateQueries({queryKey:["user"]});
+      toast.success("Successfully Logged In!");
       navigate("/menu", { replace: true })
+      
     },
     onError: (err) => {
       

@@ -28,6 +28,7 @@ export default function AuthenticationForm() {
     e.preventDefault();
     if (register) {
       signup({ name, email, password });
+      setRegister(false);
     } else {
       login({ email, password });
     }

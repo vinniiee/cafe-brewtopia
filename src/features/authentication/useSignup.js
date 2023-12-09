@@ -11,10 +11,11 @@ export function useSignup() {
     mutationFn:  ({ name, email, password }) =>
       signupApi({ name, email, password }),
     onSuccess: (data) => {
-      toast.info("Complete email verification then Log In.");
+      
       console.log("data", data);
       queryClient.invalidateQueries({queryKey:["user"]});
       // navigate("/menu", { replace: true });
+      toast.info("Complete email verification then Log In.");
     },
     onError: (err) => {
       toast.error("Could not register user!");

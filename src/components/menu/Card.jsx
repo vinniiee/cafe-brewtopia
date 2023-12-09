@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Beans from "../../assets/Beans";
 import Flame from "../../assets/Flame";
 // import { useDispatch,  } from "react-redux";
@@ -10,12 +10,14 @@ import {
   useSelector,
 } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { CoffeeContext } from "../../pages/Menu";
 // import { addItem, removeItem } from "../../utils/cartApi";
 // import { useUser } from "../authentication/useUser";
 // import { updateUserCart } from "../../services/apiUser";
 
 // eslint-disable-next-line react/prop-types
-export default function Card({ coffee }) {
+export default function Card() {
+  const {coffee} =  useContext(CoffeeContext);
   const navigate = useNavigate();
   const { addItem, removeItem } = useCart();
   const [size, setSize] = useState(1);

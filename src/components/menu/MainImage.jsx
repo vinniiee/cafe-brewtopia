@@ -1,39 +1,59 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useContext } from "react";
+import { CoffeeContext } from "../../pages/Menu";
 
 // eslint-disable-next-line react/prop-types
-export default function MainImage({ image }) {
+export default function MainImage() {
+  const { coffee, isLoading } = useContext(CoffeeContext);
   return (
     <div className="w-full hidden relative lg:flex justify-center  mb-32">
-      <div
-        key={image}
-        className="relative h-full w-full z-10 xl:-left-32  flex justify-center"
-      >
-        <AnimatePresence mode="popLayout">
-          {image && (
-            <motion.img
-              initial={{
+      <AnimatePresence mode="popLayout">
+        {!isLoading && (
+          <motion.div
+            variants={{
+              initial: {
                 x: "20vw",
                 y: "-100vh",
                 rotate: -100,
                 scale: 0.2,
                 opacity: 0,
-              }}
-              animate={{ x: "0vw", y: "0vh", rotate: 0, scale: 1, opacity: 1 }}
-              exit={{
+              },
+              animate: {
+                x: "0vw",
+                y: "0vh",
+                rotate: 0,
+                scale: 1,
+                opacity: 1,
+                transition:{ duration: 1.5 }
+              },
+              exit: {
                 x: "-100vw",
                 y: "20vh",
                 rotate: 90,
                 scale: 0.2,
                 opacity: 0,
-              }}
-              transition={{ duration: 1.5 }}
+                transition:{ duration: 1.5 }
+              },
+            }}
+            key={coffee?.image}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            // transition={{ duration: 1.5 }}
+            // key={image}
+            className="relative h-full w-full z-10 xl:-left-32  flex justify-center"
+          >
+            {/* <AnimatePresence mode="popLayout"> */}
+
+            <img
               className="max-h-[350px] max-w-[350px] drop-shadow-[30px_15px_5px_rgba(0,0,0,0.4)]"
-              src={image}
+              src={coffee?.image}
               alt="coffe-main"
             />
-          )}
-        </AnimatePresence>
-      </div>
+            {/* </AnimatePresence> */}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
