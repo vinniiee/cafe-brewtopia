@@ -8,7 +8,7 @@ import {
 import Spinner from "../ui/Spinner";
 import useCoffees from "../features/menu/useCoffees";
 import { createContext, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 export const CoffeeContext = createContext();
 
 export default function Menu() {
@@ -52,11 +52,13 @@ export default function Menu() {
             
             {!isLoading ? (
               data?.length > 0 ? (
-                <CoffeeList
+                <AnimatePresence>
+                  <CoffeeList
                   data={data}
                   setCoffee={setCoffee}
                   selected={coffee}
                 />
+                </AnimatePresence>
               ) : (
                 <p className="text-white/90 font-primary ml-8 tracking-wide font-thin">
                   No Coffee found for this set of selections.

@@ -1,9 +1,22 @@
+import { motion } from "framer-motion";
+
 // eslint-disable-next-line react/prop-types
-export default function CoffeeListItem({setCoffee,setActive,i,active,selected,item}) {
-    // eslint-disable-next-line react/prop-types
-    const {image,name} = item;
+export default function CoffeeListItem({
+  setCoffee,
+  setActive,
+  i,
+  active,
+  selected,
+  item,
+}) {
+  // eslint-disable-next-line react/prop-types
+  const { image, name } = item;
   return (
-    <button
+    <motion.button
+      initial={{ scale: 0, y: "-100%" }}
+      animate={{ scale: 1, y: "0%" }}
+      exit={{ scale: 0 }}
+      transition={{ delay: 0.5 + i * 0.1, duration: 0.3 }}
       onClick={() => {
         setCoffee(i);
         setActive(false);
@@ -38,6 +51,6 @@ export default function CoffeeListItem({setCoffee,setActive,i,active,selected,it
       <p className="text-center  leading-4 text-xs font-thin text-white/70 drop-shadow-[5px_5px_1px_rgba(0,0,0,0.5)]">
         {name}
       </p>
-    </button>
+    </motion.button>
   );
 }

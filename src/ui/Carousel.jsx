@@ -16,7 +16,7 @@ export default function Carousel({ children, showArrows }) {
       draggableElement.current.scrollWidth -
       draggableElement.current.offsetWidth;
     setmask(mask);
-  }, [draggableElement]);
+  }, [draggableElement,children]);
 
   const controls = useAnimationControls();
   let left = -mask - 32;
