@@ -1,5 +1,8 @@
 import Beans from "../../assets/Beans";
 
+
+
+
 // eslint-disable-next-line react/prop-types
 export default function SearchResults({ loading, searchResults }) {
   searchResults = (
@@ -19,8 +22,9 @@ export default function SearchResults({ loading, searchResults }) {
   );
   return (
     <div
+      
       className="absolute w-full max-h-[400px]
-         overflow-scroll flex flex-col text-white top-12  bg-black mr-3 rounded z-50"
+         overflow-scroll flex flex-col text-white top-12 -ml-3  bg-black rounded z-50"
     >
       {loading ? (
         <p className="  text-center tracking-wider opacity-90 py-6">

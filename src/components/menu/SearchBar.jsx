@@ -6,9 +6,21 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateSortParams } from "../../store";
 import { initialSortState } from "../../store/slices/sortSlice";
+import { AnimatePresence, motion } from "framer-motion";
+
+const variants = {
+  initial: {
+    opacity: 0.4,
+  },
+  animate: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+};
 
 export default function SearchBar() {
-
   const dispatch = useDispatch();
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,7 +40,6 @@ export default function SearchBar() {
   function submitHandler(e) {
     e.preventDefault();
     if (searchResults.length > 0) {
-      
       setSearchParams({ search: searchTerm });
       setFocus(false);
       dispatch(updateSortParams(initialSortState));
@@ -41,14 +52,30 @@ export default function SearchBar() {
       style={{ zIndex: "101" }}
     >
       <div
-        className={`relative w-full max-w-xl flex justify-center items-center ${
+        className={`relative w-full max-w-xl flex justify-start items-center ${
           focus ? "sm:scale-110 shadow-xl" : "scale-100 shadow"
         } duration-200`}
       >
         <div onClick={() => setFocus(true)}>
-          {focus && searchResults?.length > 0 && (
-            <SearchResults searchResults={searchResults} loading={loading} />
-          )}
+          <AnimatePresence>
+            {focus && searchResults?.length > 0 && (
+              <motion.div
+                // key={searchTerm}
+                className="flex w-full overflow-hidden "
+                variants={variants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                // initial={{width:'0%'}}
+                // animate={{width:'100%'}}
+              >
+                <SearchResults
+                  searchResults={searchResults}
+                  loading={loading}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         <div className="w-[20px] -mr-8 z-20">
