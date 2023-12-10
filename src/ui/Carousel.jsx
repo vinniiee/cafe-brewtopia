@@ -3,7 +3,7 @@ import RingButton from "./RingButton";
 import { motion, useAnimationControls, useMotionValue } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export default function Carousel({ children, showArrows,data }) {
+export default function Carousel({ children, showArrows }) {
   const sliderStep = 600;
   const x = useMotionValue(0);
   // console.log(x);
@@ -16,7 +16,7 @@ export default function Carousel({ children, showArrows,data }) {
       draggableElement.current.scrollWidth -
       draggableElement.current.offsetWidth;
     setmask(mask);
-  }, [draggableElement,children,data]);
+  }, [draggableElement,children]);
 
   const controls = useAnimationControls();
   let left = -mask - 32;
