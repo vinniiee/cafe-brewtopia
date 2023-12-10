@@ -1,14 +1,7 @@
 import { motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
-export default function CoffeeListItem({
-  setCoffee,
-  setActive,
-  i,
-  active,
-  selected,
-  item,
-}) {
+export default function CoffeeListItem({setCoffee,setActive,i,active,selected,item,}) {
   // eslint-disable-next-line react/prop-types
   const { image, name } = item;
   return (
