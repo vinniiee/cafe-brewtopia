@@ -5,9 +5,10 @@ import {
   CoffeeList,
   CoffeeInfo,
 } from "../features/menu";
+import Spinner from "../ui/Spinner";
 import useCoffees from "../features/menu/useCoffees";
 import { createContext, useState } from "react";
-
+import { motion } from "framer-motion";
 export const CoffeeContext = createContext();
 
 export default function Menu() {
@@ -16,9 +17,8 @@ export default function Menu() {
   if (data?.length > 0 && coffee >= data?.length) {
     setCoffee(0);
   }
-
   return (
-    <CoffeeContext.Provider value={{ coffee: data?.at(coffee) ,isLoading}}>
+    <CoffeeContext.Provider value={{ coffee: data?.at(coffee), isLoading }}>
       <div
         className="relative flex flex-col justify-center items-around min-w-screen min-h-screen w-full pt-24 sm:pt-36 lg:pt-32 p-8 bg-cover sm:px-16"
         style={{ backgroundImage: "url(/wall.jpg)" }}
@@ -39,15 +39,36 @@ export default function Menu() {
           <div className="relative z-10 -mb-6 lg:max-w-lg xl:max-w-2xl">
             <SortCarousel />
           </div>
-          <div className="flex space-x-4 z-10 items-center  bg-black/90 rounded  xl:max-w-2xl min-w-[350px] max-w-2xl lg:max-w-lg w-full lg:w-fit min-h-[150px]   pt-0 px-4 ">
-            {data?.length > 0 ? (
-              <CoffeeList data={data} setCoffee={setCoffee} selected={coffee} />
+
+          <motion.div
+           className="flex space-x-4 z-10 items-center
+          bg-black/90 rounded  xl:max-w-2xl min-w-[350px]
+           max-w-2xl lg:max-w-lg w-full lg:w-fit min-h-[165px]
+           pt-0 px-4 "
+           initial={{width:'100%',x:'-20%'}}
+           animate={{width:'100%',x:'0%', transition:{duration:1.5}}}
+          //  transition={{duration:3, type:'spring'}}
+           >
+            
+            {!isLoading ? (
+              data?.length > 0 ? (
+                <CoffeeList
+                  data={data}
+                  setCoffee={setCoffee}
+                  selected={coffee}
+                />
+              ) : (
+                <p className="text-white/90 font-primary ml-8 tracking-wide font-thin">
+                  No Coffee found for this set of selections.
+                </p>
+              )
             ) : (
-              <p className="text-white/90 font-primary ml-8 tracking-wide font-thin">
-                No Coffee found for this set of selections.
-              </p>
+              <div className="text-white w-full flex justify-center items-center mt-4">
+                {" "}
+                <Spinner size={30} />{" "}
+              </div>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </CoffeeContext.Provider>

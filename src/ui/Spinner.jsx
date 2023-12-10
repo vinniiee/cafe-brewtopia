@@ -1,8 +1,9 @@
-function Spinner() {
+// eslint-disable-next-line react/prop-types
+function Spinner({size}) {
   return (
-    <div role="status" className="animate-bounce">
+    <div role="status" className="animate-pulse">
       <svg
-        width="75"
+        width={size || "75"}
         viewBox="0 0 107 116"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

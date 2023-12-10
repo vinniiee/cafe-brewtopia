@@ -1,4 +1,4 @@
-import Card from "../../components/menu/Card";
+import Card from "../../components/menu/Card/Card";
 import CoffeeInfo from "../../components/menu/CoffeeInfo";
 import CoffeeList from "../../components/menu/CoffeeList";
 import FilterCarousel from "../../components/menu/FilterCarousel";
