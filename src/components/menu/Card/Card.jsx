@@ -37,7 +37,7 @@ export default function Card() {
        font-primary text-white w-full tracking-wide
        p-6 sm:max-w-md lg:max-w-sm xl:max-w-md min-h-[550px]"
     >
-      <div className="absolute top-1/5 left-0 w-full h-full z-10 opacity-30 overflow-hidden">
+      <div className="absolute top-1/5 left-0 w-full h-full -z-10 opacity-30 overflow-hidden">
         <Flame className="relative fill-coffee w-full bottom-1/5 -left-1/2 h-4/5" />
       </div>
       <div className="absolute right-0 bottom-1/3 opacity-30">
