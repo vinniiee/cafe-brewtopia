@@ -14,7 +14,7 @@ function OrdersList() {
   let list;
   if (orders?.length > 0) {
     list = orders.map((order) => (
-      <li key={order}>
+      <li key={order.id}>
         <OrderInfo order={order} />
       </li>
     ));

@@ -10,9 +10,10 @@ export default function OrderInfo({ order }) {
   const { eta, cart, id, location } = order;
   let minutesLeft;
   let formattedEta;
-
+  console.log(eta);
   formattedEta = formatDate(new Date(eta));
-  minutesLeft = ("" + (eta - Date.now()) / 60000 + 1).split(".")[0];
+  console.log((new Date(eta) - Date.now()));
+  minutesLeft = ("" + (new Date(eta) - Date.now()) / 60000 + 1).split(".")[0];
   let status = updateStatus(order);
   return (
     <div
@@ -23,7 +24,13 @@ export default function OrderInfo({ order }) {
         className="w-full flex justify-between 
       items-center"
       >
-        <button onClick={()=>navigate(`/order/${id}`)} className="sm:text-2xl text-md whitespace-nowrap tracking-tight border-b-2 hover:tracking-wide hover:-translate-y-0.5 border-transparent hover:border-white duration-200">
+        <button
+          onClick={() => navigate(`/order/${id}`)}
+          className="sm:text-2xl text-md whitespace-nowrap
+         tracking-tight border-b-2 hover:tracking-wide
+         hover:-translate-y-0.5 border-transparent
+       hover:border-white duration-200"
+        >
           <span className="sm:inline hidden">Info for</span> Order ID#{" "}
           <span className="uppercase">{`${id
             // eslint-disable-next-line react/prop-types
@@ -62,7 +69,7 @@ export default function OrderInfo({ order }) {
       </div>
       <div className="w-full flex shadow tracking-wider justify-between items-center p-4 rounded text-xl  bg-dark-coffee">
         <p>Total</p>
-         {/* eslint-disable-next-line react/prop-types */}
+        {/* eslint-disable-next-line react/prop-types */}
         <p>{cart.totalPrice}/-</p>
       </div>
     </div>

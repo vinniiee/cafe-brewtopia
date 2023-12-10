@@ -31,6 +31,7 @@ function CardHeader({ ratingDisplay, coffee }) {
         )}
 
         <motion.div
+          // eslint-disable-next-line react/prop-types
           key={coffee?.image}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
