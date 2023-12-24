@@ -99,7 +99,7 @@ If you find any issues or have suggestions for improvements, please open an issu
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
 ## Known Issues
-  - Menu Items Carousel: It is not draggable initially because the offset of draggableElemnt w.r.t its mask element is not being set on initial render. But after
-                         clicking any of children, the useEffect with children as depency is triggered and the offset is being set.
+  - Menu Items Carousel: It is not draggable initially because the offset of draggableElemnt w.r.t its mask element is not being set on initial render. But on
+                         clicking any of its children, the useEffect with children as its dependency is triggered and the offset is being set.
 
 Thank you for considering contributing to the BREWTOPIA Cafe Website. We look forward to collaborating with you to create a great online experience for coffee lovers!
