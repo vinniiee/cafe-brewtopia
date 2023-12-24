@@ -6,7 +6,6 @@ import { motion, useAnimationControls, useMotionValue } from "framer-motion";
 export default function Carousel({ children, showArrows }) {
   const sliderStep = 600;
   const x = useMotionValue(0);
-  // console.log(x);
   const [mask, setmask] = useState(0);
   const draggableElement = useRef();
   const draggableMask = useRef();
@@ -15,11 +14,11 @@ export default function Carousel({ children, showArrows }) {
     mask =
       draggableElement.current.scrollWidth -
       draggableElement.current.offsetWidth;
-    setmask(mask);
+    setmask(mask+32);
   }, [draggableElement,children]);
 
   const controls = useAnimationControls();
-  let left = -mask - 32;
+  // let left = -mask - 32;
 
   return (
     <>
@@ -37,7 +36,7 @@ export default function Carousel({ children, showArrows }) {
       )}
       <div
         ref={draggableMask}
-        className={` overflow-hidden  p-8 h-full max-w-screen`}
+        className={` overflow-scroll  p-8 h-full max-w-screen`}
       >
         <motion.div
           ref={draggableElement}
@@ -45,7 +44,7 @@ export default function Carousel({ children, showArrows }) {
           animate={controls}
           style={{ x }}
           transition={{ duration: 0.5 }}
-          dragConstraints={{ left, right: 0 }}
+          dragConstraints={{ left:-mask, right: 0 }}
           className="inline-flex justify-start items-strech w-full h-full "
         >
           {children}

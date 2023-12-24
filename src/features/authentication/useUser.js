@@ -12,7 +12,7 @@ export function useUser() {
     queryFn: getCurrentUser,
     retry:0
   });
-  console.log(user);
+  // console.log(user);
   useEffect(()=>{
     if (user?.auth) {
       console.log("fetching cart...")

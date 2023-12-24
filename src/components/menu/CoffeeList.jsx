@@ -8,7 +8,7 @@ import { useSearchParams } from "react-router-dom";
 export default function CoffeeList({ setCoffee, selected }) {
   const { data } = useCoffees();
   useSearchParams();
-  useEffect(() => {}, [data, selected]);
+  // useEffect(() => {}, [data, selected]);
   const [active, setActive] = useState(true);
   // eslint-disable-next-line react/prop-types
   const items = data.map((item, i) => {
@@ -25,14 +25,14 @@ export default function CoffeeList({ setCoffee, selected }) {
     );
   });
   return (
-    <Carousel>
+    <>
       {items.length === 0 ? (
         <p className="font-primary tracking-wide text-white opacity-70">
           No Coffees found for these selections.
         </p>
       ) : (
-        items
+        <Carousel>{items}</Carousel>
       )}
-    </Carousel>
+    </>
   );
 }

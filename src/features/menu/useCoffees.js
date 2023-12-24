@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { getCoffees } from "../../services/apiCoffees";
 
-export default function useCoffees() {
+export default function useCoffees(returnData) {
   const [searchParams] = useSearchParams();
   let typeFilter;
   
@@ -43,7 +43,7 @@ export default function useCoffees() {
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["coffees", filterBy, withMilk,served,sort,searchTerm],
-    queryFn: () => getCoffees({ typeFilter, sortBy, cascadeFilters, searchTerm }),
+    queryFn: () => getCoffees({ typeFilter, sortBy, cascadeFilters, searchTerm,returnData }),
     // onSuccess:()=>console.log("done!!")
   });
   // console.log(data);

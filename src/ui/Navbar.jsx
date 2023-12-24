@@ -23,7 +23,7 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
-  console.log("location", location.pathname);
+  // console.log("location", location.pathname);
   return (
     <div
       style={{ zIndex: "9999" }}

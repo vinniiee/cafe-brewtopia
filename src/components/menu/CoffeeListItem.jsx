@@ -1,10 +1,11 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 // eslint-disable-next-line react/prop-types
 export default function CoffeeListItem({setCoffee,setActive,i,active,selected,item,}) {
   // eslint-disable-next-line react/prop-types
   const { image, name } = item;
   return (
+    <AnimatePresence>
     <motion.button
       initial={{ scale: 0, y: "-100%" }}
       animate={{ scale: 1, y: "0%" }}
@@ -45,5 +46,6 @@ export default function CoffeeListItem({setCoffee,setActive,i,active,selected,it
         {name}
       </p>
     </motion.button>
+    </AnimatePresence>
   );
 }

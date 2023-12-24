@@ -6,7 +6,7 @@ export default function useSearchCoffees(searchTerm) {
   const { data, isLoading, error } = useQuery({
     queryKey: ["search", searchTerm],
     queryFn: async () => {
-      if (searchTerm.length > 3) return await searchCoffees(searchTerm);
+      if (searchTerm.length > 3) return await searchCoffees(searchTerm,true);
       else return new Array();
     },
     
