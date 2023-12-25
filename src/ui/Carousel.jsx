@@ -36,7 +36,7 @@ export default function Carousel({ children, showArrows }) {
       )}
       <div
         ref={draggableMask}
-        className={` overflow-scroll  p-8 h-full max-w-screen`}
+        className={` overflow-hidden  p-8 h-full max-w-screen`}
       >
         <motion.div
           ref={draggableElement}
