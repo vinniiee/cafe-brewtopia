@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Carousel from "../../ui/Carousel";
 import useCoffees from "../../features/menu/useCoffees";
 import CoffeeListItem from "./CoffeeListItem";
