@@ -8,10 +8,12 @@ import {
 import Spinner from "../ui/Spinner";
 import useCoffees from "../features/menu/useCoffees";
 import { createContext, useState } from "react";
-import {  motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useSearchParams } from "react-router-dom";
 export const CoffeeContext = createContext();
 
 export default function Menu() {
+  const [searchParams] = useSearchParams();
   const [coffee, setCoffee] = useState(0);
   const { data, isLoading } = useCoffees();
   if (data?.length > 0 && coffee >= data?.length) {
@@ -36,23 +38,24 @@ export default function Menu() {
         </div>
         <CoffeeInfo coffee={data ? data[coffee] : null} />
         <div className="flex flex-col lg:-mt-32">
-          <div className="relative z-10 -mb-6 lg:max-w-lg xl:max-w-2xl">
-            <SortCarousel />
-          </div>
+          {!searchParams.get("search") && (
+            <div className="relative z-10 -mb-6 lg:max-w-lg xl:max-w-2xl">
+              <SortCarousel />
+            </div>
+          )}
 
           <motion.div
-           className="flex space-x-4 z-10 items-center
+            className="flex space-x-4 z-10 items-center
           bg-black/90 rounded  xl:max-w-2xl min-w-[350px]
            max-w-2xl lg:max-w-lg w-full lg:w-fit min-h-[165px]
            pt-0 px-4 "
-           initial={{width:'100%',x:'-20%'}}
-           animate={{width:'100%',x:'0%', transition:{duration:1.5}}}
-          //  transition={{duration:3, type:'spring'}}
-           >
-            
+            initial={{ width: "100%", x: "-20%" }}
+            animate={{ width: "100%", x: "0%", transition: { duration: 1.5 } }}
+            //  transition={{duration:3, type:'spring'}}
+          >
             {!isLoading ? (
               data?.length > 0 ? (
-                  <CoffeeList
+                <CoffeeList
                   data={data}
                   setCoffee={setCoffee}
                   selected={coffee}
