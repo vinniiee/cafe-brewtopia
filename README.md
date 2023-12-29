@@ -34,26 +34,16 @@ The BREWTOPIA Cafe Website is designed to serve as an online platform for our ca
 
   For now all the figma files are pooled together but will be put in proper file structure in near future. Feel free to do it and update the links here.
 
-### Technology Stack
-- **Frontend Framework**: React (Version 18.2.0)
-- **Bundler/Build Tool**: Vite (Version 4.4.5)
-- **Routing**: React Router DOM (Version 6.18.0)
-- **Type Definitions**: 
-  - @types/react (Version 18.2.15)
-  - @types/react-dom (Version 18.2.7)
-- **Styling**: Tailwind CSS (Version 3.3.3)
-- **CSS Post-processing**:
-  - PostCSS (Version 8.4.31)
-  - Autoprefixer (Version 10.4.16)
-  - PostCSS Nesting (Version 12.0.1)
-- **Linting**:
-  - ESLint (Version 8.45.0)
-  - ESLint Plugins:
-    - eslint-plugin-react (Version 7.32.2)
-    - eslint-plugin-react-hooks (Version 4.6.0)
-- **Additional Libraries**:
-  - Framer Motion (Version 10.16.4)
-  - Vite React Plugin (@vitejs/plugin-react) (Version 4.0.3)
+### Technology Stack- **React:** [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
+- **Redux Toolkit:** [![Redux Toolkit](https://img.shields.io/badge/Redux_Toolkit-1.9.7-purple.svg)](https://redux-toolkit.js.org/)
+- **Supabase JS:** [![Supabase JS](https://img.shields.io/badge/Supabase_JS-2.38.4-orange.svg)](https://supabase.io/)
+- **React Query:** [![React Query](https://img.shields.io/badge/React_Query-5.8.4-green.svg)](https://react-query.tanstack.com/)
+- **Framer Motion:** [![Framer Motion](https://img.shields.io/badge/Framer_Motion-10.16.4-pink.svg)](https://www.framer.com/motion/)
+- **React Hook Form:** [![React Hook Form](https://img.shields.io/badge/React_Hook_Form-7.48.2-blue.svg)](https://react-hook-form.com/)
+- **React Router DOM:** [![React Router DOM](https://img.shields.io/badge/React_Router_DOM-6.18.0-purple.svg)](https://reactrouter.com/)
+- **React Redux:** [![React Redux](https://img.shields.io/badge/React_Redux-8.1.3-blue.svg)](https://react-redux.js.org/)
+- **React Toastify:** [![React Toastify](https://img.shields.io/badge/React_Toastify-9.1.3-yellow.svg)](https://fkhadra.github.io/react-toastify/)
+
 
 This tech stack is selected to be on par with a modern and efficient setup for developing a React-based web application with Vite as the build tool. It includes tools for routing, styling, linting, type checking, and animation. The project seems well-equipped for building a dynamic and responsive web application.
 
