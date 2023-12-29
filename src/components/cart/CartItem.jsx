@@ -36,7 +36,7 @@ export default function CartItem({ item, cartItem, totalQuantity }) {
           <p className="text-xs font-light">{sizes[size]}</p>
         </div>
       </div>
-      <p className="relative z-50 text-center w-1/6">&#8377; {price} /-</p>
+      <p className="relative z-50  text-center whitespace-nowrap w-1/6">&#8377; {price} /-</p>
       <div className="relative z-50 flex justify-center items-center w-1/6">
         <button
           className="bg-dark-coffee px-1 rounded-l w-6"
@@ -56,7 +56,7 @@ export default function CartItem({ item, cartItem, totalQuantity }) {
           +
         </button>
       </div>
-      <p className="relative z-50 text-center w-1/6">
+      <p className="relative whitespace-nowrap z-50 text-center w-1/6">
         &#8377; {price * quantity} /-
       </p>
       <div
@@ -70,7 +70,7 @@ export default function CartItem({ item, cartItem, totalQuantity }) {
           x
         </button>
       </div>
-      <p className="opacity-0 sm:hidden w-1/12">placeholder</p>
+      <p className="opacity-0 hidden sm:visible w-1/12">placeholder</p>
       <div className="absolute z-10  h-full w-full bottom-20 -left-5">
         <Flame className="fill-dark-coffee-2/50 h-[300px]  -rotate-90" />
       </div>
