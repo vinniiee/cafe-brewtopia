@@ -19,11 +19,14 @@ function OrdersList() {
       </li>
     ));
   }
+  if(isLoading){
+    return <Spinner />
+  }
 
   return (
     <>
-      {isLoading || orders?.length === 0 ? (
-        <Spinner />
+      {orders?.length === 0 ? (
+        <p className="text-white"> No previous orders.</p>
       ) : (
         <div className="w-full">
             <h1 className="text-5xl mb-8 text-white/95 tracking-wide  underline underline-offset-2 ">My Orders</h1>

@@ -40,7 +40,7 @@ export async function login({ email, password }) {
     .eq("auth", data.user.id);
 
   if (error2) throw new Error(error2.message);
-  // console.log(userData);
+  console.log("User data",userData);
   return userData[0];
 }
 
@@ -51,13 +51,14 @@ export async function getCurrentUser() {
   const { data, error } = await supabase.auth.getUser();
 
   if (error) throw new Error(error.message);
-  // console.log(data.user.id);
+  console.log("Logged in user",data);
+
   const { data: userData, error: error2 } = await supabase
     .from("customers")
     .select("*")
     .eq("auth", data.user.id);
 
-  // console.log("cfqwreqwa", userData);
+  console.log("cfqwreqwa", userData);
   if (error2) {
     console.log(error2.message);
     throw new Error(error2.message);

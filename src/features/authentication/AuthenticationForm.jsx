@@ -73,6 +73,7 @@ export default function AuthenticationForm() {
          bg-dark-coffee rounded-md  shadow-lg
            tracking-wide"
               >
+                <p className="text-left w-full font-thin  text-sm"> Email: guest@email.com <br/>  Password: qwertyuiop</p>
                 <AnimatePresence>
                   {register && (
                     <motion.div
