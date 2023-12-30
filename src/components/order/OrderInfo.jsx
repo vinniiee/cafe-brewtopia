@@ -10,9 +10,9 @@ export default function OrderInfo({ order }) {
   const { eta, cart, id, location } = order;
   let minutesLeft;
   let formattedEta;
-  console.log(eta);
+  // console.log(eta);
   formattedEta = formatDate(new Date(eta));
-  console.log((new Date(eta) - Date.now()));
+  // console.log((new Date(eta) - Date.now()));
   minutesLeft = ("" + (new Date(eta) - Date.now()) / 60000 + 1).split(".")[0];
   let status = updateStatus(order);
   return (

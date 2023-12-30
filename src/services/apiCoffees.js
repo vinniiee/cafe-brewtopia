@@ -66,6 +66,6 @@ export const getCoffees = async ({
     console.error(error);
     throw new Error("Could not fetch coffees!");
   }
-  console.log(data);
+  // console.log(data);
   return data;
 };

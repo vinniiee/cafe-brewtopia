@@ -14,14 +14,16 @@ export default function Card() {
   const { coffee, isLoading } = useContext(CoffeeContext);
   const [size, setSize] = useState(1);
   const { data: cart, error } = useSelector((state) => state.cart);
-  console.log(cart);
-  console.log(error);
+  // console.log(cart);
+  if(error){
+    console.log(error);
+  }
 
   // eslint-disable-next-line react/prop-types
   const cartItem =
     // eslint-disable-next-line react/prop-types
     coffee && cart?.items.find((item) => item.name === coffee?.name);
-  console.log(cartItem);
+  // console.log(cartItem);
   // eslint-disable-next-line react/prop-types
   let ratingDisplay;
   // eslint-disable-next-line react/prop-types

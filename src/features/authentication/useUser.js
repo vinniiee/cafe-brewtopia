@@ -7,19 +7,20 @@ import { login } from "../../store";
 
 export function useUser() {
   const dispatch = useDispatch();
-  const { isLoading, data: user } = useQuery({
+  const { isLoading, data: user,error } = useQuery({
     queryKey: ["user"],
     queryFn: getCurrentUser,
     retry:0
   });
-  // console.log(user);
+  console.log("Error",error);
   useEffect(()=>{
+    if(error) return;
     if (user?.auth) {
-      console.log("fetching cart...")
+      // console.log("fetching cart...")
       dispatch(fetchCart(user));
       dispatch(login(user));
     }
-  },[dispatch, user])
+  },[dispatch, user,error])
 
-  return { isLoading, user, isAuthenticated: user?.auth ? true : false };
+  return { isLoading, user, isAuthenticated: !error && user?.auth ? true : false };
 }

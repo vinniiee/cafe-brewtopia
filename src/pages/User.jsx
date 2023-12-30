@@ -27,7 +27,8 @@ export default function User() {
           <UserDetails>
             <h1 className="text-4xl text-white/95 border-b-2  pb-2 text-left w-full tracking-wide">Personal Details</h1>
             <UserDetails.InputFields />
-            <UserDetails.Submit>SUbmit changes</UserDetails.Submit>
+            <UserDetails.Submit>Submit changes</UserDetails.Submit>
+            <UserDetails.Logout/>
           </UserDetails>
         </div>
       </div>

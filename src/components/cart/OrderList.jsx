@@ -7,7 +7,7 @@ import useCart from "../../hooks/useCart";
 export default function OrderList({ order }) {
   const {parseCartToItems} = useCart();
   const items = parseCartToItems(order);
-  console.log("Parsed Cart", items);
+  // console.log("Parsed Cart", items);
   const itemList = items.map((item, i) => {
     // eslint-disable-next-line react/prop-types
     const { image, name, price, quantity, size,served } = item;

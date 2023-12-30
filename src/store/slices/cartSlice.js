@@ -23,7 +23,7 @@ const cartSlice = createSlice({
   extraReducers(builder) {
     // fetchCart
     builder.addCase(fetchCart.fulfilled, (state, action) => {
-      console.log(action.payload);
+      // console.log(action.payload);
       state.isLoading = false;
       state.error = null;
       state.data = action.payload;

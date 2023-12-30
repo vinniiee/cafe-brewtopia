@@ -68,6 +68,7 @@ export async function getCurrentUser() {
 
 export async function logout() {
   const { error } = await supabase.auth.signOut();
+  console.log("Logged Out!");
   if (error) throw new Error(error.message);
 }
 

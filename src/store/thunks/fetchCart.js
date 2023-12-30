@@ -9,7 +9,7 @@ export const fetchCart = createAsyncThunk("cart/fetch", async ( user ) => {
     if(error){
         console.log(error.message);
     }
-    console.log(data);
+    // console.log(data);
     const cart= data[0].cart;
     if(!cart.userId ){
       cart.userId = user.auth;

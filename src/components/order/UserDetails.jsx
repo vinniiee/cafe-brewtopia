@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../../services/apiOrder";
 import { clearCart } from "../../store";
 import { useNavigate } from "react-router-dom";
+import { useLogout } from "../../features/authentication/useLogout";
 
 const UserDetailsContext = createContext();
 
@@ -70,7 +71,6 @@ function InputFields() {
               defaultValue={user?.name}
               {...register("name", { required: true })}
             />
-            {/* {errors.name && ( */}
             <p
               className={`text-light-coffee text-sm mt-1  ${
                 errors.name ? "opacity-100" : "opacity-0"
@@ -163,7 +163,23 @@ function Submit({ children }) {
   );
 }
 
+function Logout() {
+  const { logout } = useLogout();
+  return (
+    <button
+      className="uppercase bg-black text-white text-xl
+   sm:text-2xl tracking-wider rounded-sm w-full p-3"
+      onClick={async () => {
+        logout();
+      }}
+    >
+      Logout
+    </button>
+  );
+}
+
 UserDetails.Submit = Submit;
 UserDetails.InputFields = InputFields;
+UserDetails.Logout = Logout;
 
 export default UserDetails;
