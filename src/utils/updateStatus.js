@@ -1,5 +1,5 @@
 export const updateStatus= (order)=>{
-    let status;
+    let status="confirming";
     if (Date.now() - new Date(order?.created_at) > 1000 * 15) {
         status = "preparing";
       }

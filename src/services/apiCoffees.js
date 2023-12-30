@@ -51,7 +51,7 @@ export const getCoffees = async ({
   if (!searchTerm && typeFilter) {
     query.eq(typeFilter.key, typeFilter.value);
   }
-  console.log("CascadeFilters", cascadeFilters);
+  // console.log("CascadeFilters", cascadeFilters);
   if (cascadeFilters.length > 0) {
     query.contains("attributes", cascadeFilters);
   }

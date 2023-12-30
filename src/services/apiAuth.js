@@ -40,25 +40,25 @@ export async function login({ email, password }) {
     .eq("auth", data.user.id);
 
   if (error2) throw new Error(error2.message);
-  console.log("User data",userData);
+  // console.log("User data",userData);
   return userData[0];
 }
 
 export async function getCurrentUser() {
   // const { data: session } = await supabase.auth.getSession();
   // if (!session.session) return null;
-  console.log("fetching user...");
+  // console.log("fetching user...");
   const { data, error } = await supabase.auth.getUser();
 
   if (error) throw new Error(error.message);
-  console.log("Logged in user",data);
+  // console.log("Logged in user",data);
 
   const { data: userData, error: error2 } = await supabase
     .from("customers")
     .select("*")
     .eq("auth", data.user.id);
 
-  console.log("cfqwreqwa", userData);
+  // console.log("cfqwreqwa", userData);
   if (error2) {
     console.log(error2.message);
     throw new Error(error2.message);
@@ -69,7 +69,7 @@ export async function getCurrentUser() {
 
 export async function logout() {
   const { error } = await supabase.auth.signOut();
-  console.log("Logged Out!");
+  // console.log("Logged Out!");
   if (error) throw new Error(error.message);
 }
 

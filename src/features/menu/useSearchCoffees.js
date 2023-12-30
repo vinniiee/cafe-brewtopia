@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { searchCoffees } from "../../services/apiCoffees";
 
 export default function useSearchCoffees(searchTerm) {
-  console.log("searchTerm", searchTerm);
+  // console.log("searchTerm", searchTerm);
   const { data, isLoading, error } = useQuery({
     queryKey: ["search", searchTerm],
     queryFn: async () => {

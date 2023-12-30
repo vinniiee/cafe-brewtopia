@@ -12,7 +12,7 @@ export function useUser() {
     queryFn: getCurrentUser,
     retry:0
   });
-  console.log("Error",error);
+  // console.log("Error",error);
   useEffect(()=>{
     if(error) return;
     if (user?.auth) {

@@ -10,7 +10,7 @@ export default function FilterCarousel() {
   const [searchParams, setSearchParams] = useSearchParams();
   let selected = searchParams.get("filterBy");
   useEffect(() => {
-    console.log("Selected",selected);
+    // console.log("Selected",selected);
     if (!selected) {
       searchParams.set("filterBy", "all");
       setSearchParams(searchParams);
