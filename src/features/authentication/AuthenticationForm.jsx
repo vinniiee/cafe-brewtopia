@@ -8,7 +8,6 @@ import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./useUser";
 
-
 export default function AuthenticationForm() {
   const [register, setRegister] = useState(false);
   const [name, setName] = useState("");
@@ -42,24 +41,22 @@ export default function AuthenticationForm() {
       text-white rounded-2xl max-w-3xl bg-light-coffee shadow-lg p-4 sm:p-16 w-3/4 m-16 overflow-hidden"
         >
           <div className="absolute z-20 text-2xl font-normal tracking-wide top-0 flex w-full justify-between">
-            <div
+            <button
               className={`w-full p-4  text-center ${
                 register && "bg-dark-coffee"
               } duration-200`}
+              onClick={() => setRegister(false)}
             >
-              <button onClick={() => setRegister(false)}>
-                <h3>LOG IN</h3>
-              </button>{" "}
-            </div>
-            <div
+              <h3>LOG IN</h3>
+            </button>{" "}
+            <button
               className={`w-full p-4  text-center ${
                 !register && "bg-dark-coffee"
               } duration-200`}
+              onClick={() => setRegister(true)}
             >
-              <button onClick={() => setRegister(true)}>
-                <h3>SIGN UP</h3>
-              </button>
-            </div>
+              <h3>SIGN UP</h3>
+            </button>
           </div>
           <div className="flex z-20 flex-col p-8 space-y-4 justify-center items-center ">
             <div className="h-full max-w-md">
@@ -73,7 +70,10 @@ export default function AuthenticationForm() {
          bg-dark-coffee rounded-md  shadow-lg
            tracking-wide"
               >
-                <p className="text-left w-full font-thin  text-sm"> Email: guest@email.com <br/>  Password: qwertyuiop</p>
+                <p className="text-left w-full font-thin  text-sm">
+                  {" "}
+                  Email: guest@email.com <br /> Password: qwertyuiop
+                </p>
                 <AnimatePresence>
                   {register && (
                     <motion.div
@@ -93,7 +93,6 @@ export default function AuthenticationForm() {
                         type="text"
                         autoFocus
                         required
-                        minLength={6}
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                       />
