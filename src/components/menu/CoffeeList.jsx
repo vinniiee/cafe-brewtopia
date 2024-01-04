@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Carousel from "../../ui/Carousel";
+// import Carousel from "../../ui/Carousel";
 import useCoffees from "../../features/menu/useCoffees";
 import CoffeeListItem from "./CoffeeListItem";
 import { useSearchParams } from "react-router-dom";
@@ -31,7 +31,7 @@ export default function CoffeeList({ setCoffee, selected }) {
           No Coffees found for these selections.
         </p>
       ) : (
-        <Carousel>{items}</Carousel>
+        <div className="w-full flex justify-start items-strech pt-6 overflow-scroll">{items}</div>
       )}
     </>
   );
