@@ -50,6 +50,18 @@ export default function useCart() {
   }
 
   function parseCartToItems(cart) {
+
+    const sortItems = (a, b) => {
+      const nameComparison = a.name.localeCompare(b.name);
+    
+      if (nameComparison === 0) {
+        return a.size - b.size;
+      }
+    
+      return nameComparison;
+    };
+
+
     const items = cart.items
       .map((item) => {
         let temp = [];
@@ -70,7 +82,7 @@ export default function useCart() {
         }
         return temp;
       })
-      .flat();
+      .flat().sort(sortItems);
     return items;
   }
 }
