@@ -1,7 +1,7 @@
 # BREWTOPIA Cafe Website
 
 Welcome to the BREWTOPIA Cafe Website GitHub repository. We're thrilled to have you here and are excited about your potential contributions to our project. This repository contains the source code for our cafe's website, which aims to provide a delightful online experience for our customers.
-- **Deployed On**: [Vercel](https://cafe-brewtopia.vercel.app/)
+- **Deployed On**: [Vercel](https://cafe-brewtopia-two.vercel.app/)
 
 ## Table of Contents
 - [Project Overview](#project-overview)
@@ -87,9 +87,3 @@ If you find any issues or have suggestions for improvements, please open an issu
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for more details.
-
-## Known Issues
-  - Menu Items Carousel: It is not draggable initially because the offset of draggableElemnt w.r.t its mask element is not being set on initial render. But on
-                         clicking any of its children, the useEffect with children as its dependency is triggered and the offset is being set.
-
-Thank you for considering contributing to the BREWTOPIA Cafe Website. We look forward to collaborating with you to create a great online experience for coffee lovers!
