@@ -10,7 +10,7 @@ export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [y, setY] = useState(false);
-  const [sticky, setSticky] = useState(true);
+  const [sticky, setSticky] = useState(false);
   useEffect(() => {
     function handleScroll() {
       if (y - window.scrollY > 20) {
