@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Footer() {
+  const navigate = useNavigate();
   const connectLogoClasses = `w-[16px] md:min-w-[32px]`;
   const footerHeading = `lg:text-3xl   text-lg sm:text-2xl font-primary text-white`;
 
@@ -20,10 +23,19 @@ export default function Footer() {
           <div className="flex flex-col justify-center space-y-2 lg:space-y-4 items-center p-0">
             <h1 className={footerHeading}>Quick Links</h1>
             <div className="flex lg:flex-col justify-center space-x-2 lg:space-x-0 items-center lg:space-y-2">
-              <p>Home</p>
-              <p>Menu</p>
+              <button
+                onClick={() =>
+                  window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                  })
+                }
+              >
+                Home
+              </button>
+              <button onClick={() => navigate("/menu")}>Menu</button>
               <p>About Us</p>
-              <p>Conatct</p>
+              <p>Contact</p>
             </div>
           </div>
           <div className="flex flex-col justify-center  items-center space-y-4 lg:ml-16 ">

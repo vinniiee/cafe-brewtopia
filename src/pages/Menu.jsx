@@ -7,7 +7,7 @@ import {
 } from "../features/menu";
 import Spinner from "../ui/Spinner";
 import useCoffees from "../features/menu/useCoffees";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 export const CoffeeContext = createContext();
@@ -16,6 +16,13 @@ export default function Menu() {
   const [searchParams] = useSearchParams();
   const [coffee, setCoffee] = useState(0);
   const { data, isLoading } = useCoffees();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+  const ref = useRef();
   if (data?.length > 0 && coffee >= data?.length) {
     setCoffee(0);
   }
@@ -25,7 +32,7 @@ export default function Menu() {
         className="relative flex flex-col justify-center items-around min-w-screen min-h-screen w-full pt-24 sm:pt-36 lg:pt-32 p-8 bg-cover sm:px-16"
         style={{ backgroundImage: "url(/wall.jpg)" }}
       >
-        <div className="absolute top-0 left-0 w-2/5 z-0">
+        <div className="absolute top-0 left-0 w-2/5 z-0" ref={ref}>
           <img className="w-full" src="/ui/menu-art.svg" alt="menu-art" />
         </div>
         <div className="flex flex-col lg:flex-row font-primary justify-between items-center w-full">
