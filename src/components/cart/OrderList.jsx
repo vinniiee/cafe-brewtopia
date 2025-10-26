@@ -14,7 +14,7 @@ export default function OrderList({ order }) {
     const sizes = ["Small", "Grande", "Venti"];
     return (
       <div
-        key={i}
+        key={i} 
         className="flex relative  justify-between my-2 rounded space-x-2
        p-2 items-center bg-coffee w-full h-[100px] text-white/80 overflow-hidden"
       >

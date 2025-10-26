@@ -33,6 +33,7 @@ function App() {
           element: <Authentication />,
           errorElement: <Error />,
         },
+
         {
           element: <ProtectedRoute />,
           errorElement: <Error />,

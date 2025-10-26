@@ -9,7 +9,7 @@ export const deleteFromCart = createAsyncThunk(
     let newItems = items.filter((item) => item.name !== coffee.name);
     let newItem;
     let totalPrice =
-      cart.totalPrice - coffee.price[size] * coffee.quantity[size];
+      cart.totalPrice - coffee.prices[size] * coffee.quantity[size];
     let totalQuantity = cart.totalQuantity - coffee.quantity[size];
 
     if (coffee.quantity[size] !== coffee.itemQuantity) {

@@ -16,6 +16,7 @@ export default function Menu() {
   const [searchParams] = useSearchParams();
   const [coffee, setCoffee] = useState(0);
   const { data, isLoading } = useCoffees();
+  console.log(data);
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -26,6 +27,7 @@ export default function Menu() {
   if (data?.length > 0 && coffee >= data?.length) {
     setCoffee(0);
   }
+  console.log("Data : ",data);
   return (
     <CoffeeContext.Provider value={{ coffee: data?.at(coffee), isLoading }}>
       <div

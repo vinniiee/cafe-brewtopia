@@ -1,17 +1,17 @@
 import { createContext, useContext } from "react";
-import { useUser } from "../../features/authentication/useUser";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { placeOrder } from "../../services/apiOrder";
 import { clearCart } from "../../store";
 import { useNavigate } from "react-router-dom";
 import { useLogout } from "../../features/authentication/useLogout";
+import { getCurrentUser } from "../../services/apiAuth";
 
 const UserDetailsContext = createContext();
 
 // eslint-disable-next-line react/prop-types
 function UserDetails({ children, location }) {
-  const { user } = useUser();
+  const { user } = getCurrentUser();
   const cart = useSelector((state) => state.cart.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();

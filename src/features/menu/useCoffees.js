@@ -2,18 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import { getCoffees } from "../../services/apiCoffees";
 
-export default function useCoffees(returnData) {
+export default function useCoffees() {
   const [searchParams] = useSearchParams();
-  let typeFilter;
-  
+
   //  "type" Filter
-  const filterBy = searchParams.get("filterBy");
-  if (filterBy !== null && filterBy !== "all"){
-    if (filterBy === "iced brew") {
-      typeFilter = { key: "served", value: "cold" };
-    } else {
-      typeFilter = { key: "type", value: filterBy };
-    }
+  let filterBy = searchParams.get("filterBy");
+  if (filterBy == "all"){
+    filterBy=null;
   }
 
   let cascadeFilters = [];
@@ -32,19 +27,49 @@ export default function useCoffees(returnData) {
 
   // Sort By
   const sort = searchParams.get("sortBy")?.split("-");
-  let sortBy;
+  let sortBy=null, ascending=true;
 
   if (sort) {
-    sortBy = { ascending: sort[1] === "asc", value: sort[0] };
+    sortBy = sort[0];
+    ascending = sort[1] === "asc";
   }
 
- // Search Params
+  // Search Params
   const searchTerm = searchParams.get("search");
 
   const { data, isLoading, error } = useQuery({
-    queryKey: ["coffees", filterBy, withMilk,served,sort,searchTerm],
-    queryFn: () => getCoffees({ typeFilter, sortBy, cascadeFilters, searchTerm,returnData }),
-    // onSuccess:()=>console.log("done!!")
+    queryKey: [
+      "coffees",
+      filterBy || "",
+      withMilk || "",
+      served || "",
+      sortBy || "",
+      searchTerm || "",
+      ascending ,
+    ],
+    queryFn: async () => {
+      const params = {
+        filterBy,
+        sortBy,
+        cascadeFilters,
+        searchTerm,
+        ascending,
+      }
+      console.log("Fetching data with params:",params);
+
+
+      let d = await getCoffees({
+        filterBy,
+        sortBy,
+        cascadeFilters,
+        searchTerm,
+        ascending,
+      });
+      console.log("Data fetched:", d);
+      return d;
+    },
+    onSuccess: (data) => console.log("done!!", data),
+    onError: (err) => console.error("Fetch failed:", err),
   });
   // console.log(data);
   return { data, isLoading, error };

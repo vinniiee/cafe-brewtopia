@@ -19,10 +19,10 @@ export default function CartItemList({ cart }) {
     const cartItem = cart.items.find((a) => a.name === item.name);
     // eslint-disable-next-line react/prop-types
     console.log("cart Item :",item);
-    console.log(item.name+item.price);
+    console.log(item.name+item.prices);
     return (
       <CartItem
-        key={""+item.price+item.name}
+        key={""+item.prices+item.name}
         cartItem={cartItem}
         item={item}
         // eslint-disable-next-line react/prop-types

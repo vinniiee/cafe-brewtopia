@@ -1,37 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, deleteFromCart, removeFromCart } from "../store";
-// import { useSelector } from "react-redux";
-// import { useUser } from "../features/authentication/useUser";
-// import { updateUserCart } from "../services/apiUser";
-// import { useQueryClient } from "@tanstack/react-query";
-// import { initialCartState, updateCart } from "../store/slices/cartSlice";
 
 export default function useCart() {
-  
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart.data);
-
-  // const { user } = useUser();
-  //   const query = useQueryClient();
-  //   const cart = useSelector((state) => state.cart);
-  //   const {data:cart} =  useFetchCartQuery(user);
-  //   console.log("cart in useCart",    cart);
-  //   const [addToCart,temp1] = useAddToCartMutation();
-  //   console.log(addToCart);
-  //   const [removeFromCart,temp12] = useDeductFromCartMutation();
-  //   const [deleteFromCart,temp3] = useRemoveFromCartMutation();
 
   return { addItem, removeItem, deleteItem, parseCartToItems };
 
   function addItem({ cartItem, coffee, size }) {
-    // cart.itemQuantity =10;
     let item;
+    console.log("Adding item to cart:", { cartItem, coffee, size });
     if (cartItem) {
       item = cartItem;
     } else {
       item = {
         name: coffee.name,
-        price: coffee.price,
+        prices: coffee.prices,
         image: coffee.image,
         quantity: [0, 0, 0],
         served: coffee.served,
@@ -39,7 +23,8 @@ export default function useCart() {
       };
       item.quantity[size] = 1;
     }
-    dispatch(addToCart({cart,size,coffee:item}));
+    console.log("Dispatching addToCart with item:", item);
+    dispatch(addToCart({ cart, size, coffee: item }));
   }
   async function removeItem({ cartItem, size }) {
     dispatch(removeFromCart({ coffee: cartItem, size, cart }));
@@ -50,17 +35,15 @@ export default function useCart() {
   }
 
   function parseCartToItems(cart) {
-
     const sortItems = (a, b) => {
       const nameComparison = a.name.localeCompare(b.name);
-    
+
       if (nameComparison === 0) {
         return a.size - b.size;
       }
-    
+
       return nameComparison;
     };
-
 
     const items = cart.items
       .map((item) => {
@@ -70,7 +53,7 @@ export default function useCart() {
           if (quantity[i] !== 0) {
             temp.push({
               ...rest,
-              price: rest.price[i],
+              price: rest.prices[i],
               size: i,
               quantity: quantity[i],
             });
@@ -82,7 +65,8 @@ export default function useCart() {
         }
         return temp;
       })
-      .flat().sort(sortItems);
+      .flat()
+      .sort(sortItems);
     return items;
   }
 }

@@ -1,71 +1,87 @@
-import supabase from "./supabase";
+const API_BASE_URL = "http://localhost:8080/api";
 
-export const searchCoffees = async (term, returnData) => {
-  console.log("term", term);
-  const { data: fromName, error2 } = await supabase
-    .from("coffees")
-    .select()
-    .textSearch("name", term.split(" "));
+/**
+ * Get the token from localStorage
+ */
+const getAuthHeaders = () => {
+  const token = localStorage.getItem("token");
+  return token
+    ? { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }
+    : { "Content-Type": "application/json" };
+};
 
-  if (fromName.length > 0) {
-    return returnData
-      ? fromName
-      : supabase.from("coffees").select().textSearch("name", term.split(" "));
-  }
-  // eslint-disable-next-line no-unused-vars
-  const { data: fromDescription, error1 } = await supabase
-    .from("coffees")
-    .select()
-    .textSearch("description", term.split(" "));
+export const searchCoffees = async (term) => {
+  try {
+    console.log("Searching coffees for term:", term);
+    const res = await fetch(
+      `${API_BASE_URL}/coffees?term=${term}`,
+      { headers: getAuthHeaders() }
+    );
 
-  if (error1) {
-    console.log("Could not perform search!", error1.message);
-    throw new Error("Could not perform search!");
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("Search failed:", errText);
+      return [];
+    }
+
+    return await res.json();
+  } catch (err) {
+    console.error("Error in searchCoffees:", err.message);
+    return [];
   }
-  if (error2) {
-    console.log("Could not perform search!", error2.message);
-    throw new Error("Could not perform search!");
-  }
-  return returnData
-    ? fromDescription
-    : supabase
-        .from("coffees")
-        .select()
-        .textSearch("description", term.split(" "));
 };
 
 export const getCoffees = async ({
-  typeFilter,
+  filterBy,
   cascadeFilters,
   sortBy,
   searchTerm,
+  ascending
 }) => {
-  let query;
-  if (searchTerm) {
-    query = searchCoffees(searchTerm, false);
-  } else {
-    query = supabase.from("coffees").select("*");
-  }
+  try {
+    let url = `${API_BASE_URL}/coffees`;
 
-  //TYPE FILTER
-  if (!searchTerm && typeFilter) {
-    query.eq(typeFilter.key, typeFilter.value);
-  }
-  // console.log("CascadeFilters", cascadeFilters);
-  if (cascadeFilters.length > 0) {
-    query.contains("attributes", cascadeFilters);
-  }
+    if (searchTerm) {
+      const searchResults =  await searchCoffees(searchTerm)|| [];
+      return searchResults || [];
+    }
 
-  if (sortBy) {
-    query.order(sortBy.value, { ascending: sortBy.ascending });
-  }
+    const params = new URLSearchParams();
 
-  const { data, error } = await query;
+    if (filterBy) {
+      params.append("type", filterBy);
+    }
 
-  if (error) {
-    console.error(error);
-    throw new Error("Could not fetch coffees!");
+    if (cascadeFilters && cascadeFilters.length > 0) {
+      cascadeFilters.forEach(f => {
+        params.append("attributes", f);  
+      });
+      
+    }
+
+    if (sortBy) {
+      params.append("sortBy", sortBy);
+      params.append("ascending", ascending);
+    }
+
+    if ([...params].length > 0) {
+      url += `?${params.toString()}`;
+    }
+    console.log("Fetching coffees from URL with params:", params.toString());
+
+    const res = await fetch(url, { headers: getAuthHeaders() });
+
+    if (!res.ok) {
+      const errText = await res.json();
+      console.error("Fetch coffees failed:", errText);
+      return [];
+    }
+
+    const data = await res.json();
+    console.log("Fetched coffees:", data);
+    return data || [];
+  } catch (err) {
+    console.error("Error in getCoffees:", err.message);
+    return [];
   }
-  // console.log(data);
-  return data;
 };

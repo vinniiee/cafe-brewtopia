@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 export default function CoffeeListItem({setCoffee,setActive,i,active,selected,item,}) {
   // eslint-disable-next-line react/prop-types
   const { image, name } = item;
+  console.log(item)
   return (
     <AnimatePresence>
     <motion.button
