@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Spinner from "../ui/Spinner";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,3 +20,21 @@ export default function ProtectedRoute() {
 
   return <Outlet />;
 }
+=======
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+// import { useUser } from "../features/authentication/useUser";
+import { useSelector } from "react-redux";
+// import { useUser } from "../features/authentication/useUser";
+
+export default function ProtectedRoute() {
+  const { isAuthenticated ,isLoading} = useSelector((state) => state.auth);
+  // const { user} = useUser();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if ( !isLoading && (!isAuthenticated)) navigate("/authentication");
+  }, [isAuthenticated, navigate,isLoading]);
+
+  return <Outlet />;
+}
+>>>>>>> origin/main
