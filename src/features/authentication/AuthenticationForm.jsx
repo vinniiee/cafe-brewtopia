@@ -19,8 +19,8 @@ export default function AuthenticationForm() {
   const { signup, signingUp } = useSignup();
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/menu", { replace: true });
-  }, [isAuthenticated, navigate]);
+  if (isAuthenticated) navigate(-2);
+}, [isAuthenticated, navigate]);
 
   const isLoading = loggingIn || signingUp;
   async function submitHandler(e) {

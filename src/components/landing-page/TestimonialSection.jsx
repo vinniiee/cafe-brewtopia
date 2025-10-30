@@ -37,7 +37,7 @@ export default function TestimonialSection() {
         </div>
       </div>
       <div className="relative z-10 w-screen h-full p-8 sm:px-16 md:px-16 pb-32 md:pb-16">
-      <Carousel showArrows={true}>
+      <Carousel showArrows={false}>
         {carouselItems}
       </Carousel>
       </div>

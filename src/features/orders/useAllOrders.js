@@ -2,10 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchAllOrders } from "../../services/apiOrder";
 import { toast } from "react-toastify";
 
-function useAllOrders( userId ) {
+function useAllOrders(  ) {
   const { data, error, isLoading } = useQuery({
-    queryKey: ["orders", userId],
-    queryFn: async () => fetchAllOrders(userId),
+    queryKey: ["orders"],
+    queryFn: async () => fetchAllOrders(),
     onError: (err) => {
       console.log(err.message);
       toast.error("Failed to fetch orders.");

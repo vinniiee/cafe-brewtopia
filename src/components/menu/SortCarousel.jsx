@@ -8,8 +8,8 @@ export default function SortCarousel() {
     { label: "By Rating", param: "sortBy", value: "rating-asc" },
     { label: "With Milk", param: "withMilk", value: "withMilk" },
     { label: "Without Milk", param: "withMilk", value: "withoutMilk" },
-    { label: "Price Asc.", param: "sortBy", value: "price-asc" },
-    { label: "Price Desc.", param: "sortBy", value: "price-dsc" },
+    { label: "Price Asc.", param: "sortBy", value: "prices-asc" },
+    { label: "Price Desc.", param: "sortBy", value: "prices-dsc" },
     { label: "Hot", param: "served", value: "hot" },
     { label: "Cold", param: "served", value: "cold" },
   ];

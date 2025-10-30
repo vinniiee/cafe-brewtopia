@@ -15,7 +15,7 @@ export default function Carousel({ children, showArrows }) {
       draggableElement.current.scrollWidth -
       draggableElement.current.offsetWidth;
     setmask(mask+32);
-  }, [draggableElement,children]);
+  }, [draggableElement,children]);  
 
   const controls = useAnimationControls();
   // let left = -mask - 32;
@@ -35,10 +35,10 @@ export default function Carousel({ children, showArrows }) {
         </span>
       )}
       <div
-        ref={draggableMask}
-        className={` overflow-hidden  p-8 h-full max-w-screen`}
+        // ref={draggableMask}
+        className={` overflow-scroll  p-8 h-full max-w-screen`}
       >
-        <motion.div
+        <div
           ref={draggableElement}
           drag="x"
           animate={controls}
@@ -48,7 +48,7 @@ export default function Carousel({ children, showArrows }) {
           className="inline-flex justify-start items-strech w-full h-full "
         >
           {children}
-        </motion.div>
+        </div>
       </div>
       {showArrows && (
         <span

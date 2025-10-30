@@ -1,4 +1,3 @@
-// import { useSelector } from "react-redux";
 import { formatDate } from "../utils/formatDate";
 import OrderList from "../components/cart/OrderList";
 import { useParams } from "react-router-dom";
@@ -50,7 +49,7 @@ export default function Order() {
             >
               <p className="text-2xl">
                 Status for Order ID#{" "}
-                <span className="uppercase">{`${fetchedOrder?.id.split("-").join('').substring(1, 15)
+                <span className="uppercase">{`${fetchedOrder?.id
                   }`}</span>
               </p>
               <p

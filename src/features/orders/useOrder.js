@@ -6,6 +6,7 @@ function useOrder({ id }) {
     queryKey: [id],
     queryFn: async () => fetchOrderById(id),
   });
+  console.log("Data received at useOrder",data);
   if (error) {
     console.log(error.message);
     throw new Error(error.message);

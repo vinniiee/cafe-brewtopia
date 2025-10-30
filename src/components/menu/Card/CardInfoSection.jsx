@@ -38,7 +38,7 @@ function CardInfoSection({ size }) {
               className={`${
                 coffee
                   ? // eslint-disable-next-line react/prop-types
-                    coffee.served === "cold"
+                    coffee.served.toLowerCase() === "cold"
                     ? "bg-light-coffee"
                     : "bg-dark-coffee"
                   : "bg-dark-coffee"
@@ -56,7 +56,7 @@ function CardInfoSection({ size }) {
             text-sm font-light"
           >
             {/* eslint-disable-next-line react/prop-types */}
-            <p>&#8377; {coffee ? coffee.price[size] : "0"}/-</p>
+            <p>&#8377; {coffee ? coffee.prices[size] : "0"}/-</p>
             {/* eslint-disable-next-line react/prop-types */}
             <p>{coffee ? coffee.sizes[size] : "0.0"} ml</p>
           </motion.div>

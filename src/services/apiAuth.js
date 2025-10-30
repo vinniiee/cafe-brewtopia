@@ -1,107 +1,71 @@
-import { initialCartState } from "../store/slices/cartSlice";
-import supabase from "./supabase";
+const API_URL = 
+// import.meta.env.VITE_API_URL || 
+"http://localhost:8080/api";
+
+async function handleResponse(response) {
+  if (!response.ok) {
+    const message = await response.text();
+    throw new Error(message || "Something went wrong");
+  }
+  let data = await response.json();
+  console.log(data);
+  return data;
+}
 
 export async function signup({ name, email, password }) {
-  const { data, error1 } = await supabase.auth.signUp({
-    email,
-    password,
+  const res = await fetch(`${API_URL}/auth/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, email, password }),
   });
-
-  if (error1) throw new Error(error1.message);
-
-  const { data: userData, error: error2 } = await supabase
-    .from("customers")
-    .insert([
-      {
-        name,
-        email,
-        auth: data.user.id,
-        cart: { ...initialCartState, userId: data.user.id },
-      },
-    ])
-    .select();
-
-  if (error2) throw new Error(error2.message);
-
-  return userData[0];
+  return handleResponse(res);
 }
 
 export async function login({ email, password }) {
-  const { data, error1 } = await supabase.auth.signInWithPassword({
-    email,
-    password,
+  const res = await fetch(`${API_URL}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
   });
+  const data = await handleResponse(res);
 
-  if (error1) throw new Error(error1.message);
-
-  const { data: userData, error: error2 } = await supabase
-    .from("customers")
-    .select("*")
-    .eq("auth", data.user.id);
-
-  if (error2) throw new Error(error2.message);
-  // console.log("User data",userData);
-  return userData[0];
+  // Save token locally (since JWT is stateless)
+  localStorage.setItem("token", data.token);
+  return data;
 }
 
 export async function getCurrentUser() {
-  // const { data: session } = await supabase.auth.getSession();
-  // if (!session.session) return null;
-  // console.log("fetching user...");
-  const { data, error } = await supabase.auth.getUser();
+  const token = localStorage.getItem("token");
+  if (!token) return null;
 
-  if (error) throw new Error(error.message);
-  // console.log("Logged in user",data);
-
-  const { data: userData, error: error2 } = await supabase
-    .from("customers")
-    .select("*")
-    .eq("auth", data.user.id);
-
-  // console.log("cfqwreqwa", userData);
-  if (error2) {
-    console.log(error2.message);
-    throw new Error(error2.message);
-  }
-
-  return userData[0];
+  const res = await fetch(`${API_URL}/auth/me`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return handleResponse(res);
 }
 
-export async function logout() {
-  const { error } = await supabase.auth.signOut();
-  // console.log("Logged Out!");
-  if (error) throw new Error(error.message);
+export function logout() {
+  localStorage.removeItem("token");
 }
 
-export async function updateCurrentUser({ password, fullName, avatar }) {
-  // 1. Update password OR fullName
-  let updateData;
-  if (password) updateData = { password };
-  if (fullName) updateData = { data: { fullName } };
+export async function updateCurrentUser(data) {
+  const token = localStorage.getItem("token");
+  const body = data;
 
-  const { data, error } = await supabase.auth.updateUser(updateData);
+  // if (fullName) body.fullName = fullName;
+  // if (password) body.password = password;
 
-  if (error) throw new Error(error.message);
-  if (!avatar) return data;
+  // console.log(fullName,password,info);
+  console.log(data);
 
-  // 2. Upload the avatar image
-  const fileName = `avatar-${data.user.id}-${Math.random()}`;
-
-  const { error: storageError } = await supabase.storage
-    .from("avatars")
-    .upload(fileName, avatar);
-
-  if (storageError) throw new Error(storageError.message);
-
-  // 3. Update avatar in the user
-  const { data: updatedUser, error: error2 } = await supabase.auth.updateUser({
-    data: {
-      avatar: `${
-        import.meta.env.VITE_SUPABASE_URL
-      }/storage/v1/object/public/avatars/${fileName}`,
+  const res = await fetch(`${API_URL}/auth/me`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
+    body: JSON.stringify(body),
   });
 
-  if (error2) throw new Error(error2.message);
-  return updatedUser;
+  return handleResponse(res);
 }

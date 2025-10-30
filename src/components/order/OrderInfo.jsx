@@ -32,11 +32,7 @@ export default function OrderInfo({ order }) {
        hover:border-white duration-200"
         >
           <span className="sm:inline hidden">Info for</span> Order ID#{" "}
-          <span className="uppercase">{`${id
-            // eslint-disable-next-line react/prop-types
-            .split("-")
-            .join("")
-            .substring(1, 15)}`}</span>
+          <span className="uppercase">{`${id}`}</span>
         </button>
         <p
           className="bg-dark-coffee p-4 py-2 uppercase rounded-sm

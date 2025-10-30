@@ -9,7 +9,6 @@ export const initialCartState = {
   items: [],
   totalPrice: 0,
   totalQuantity: 0,
-  userId: null,
 };
 const initialState = {
   data: initialCartState,

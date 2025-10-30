@@ -1,13 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import supabase from "../../services/supabase";
 import { initialCartState } from "../slices/cartSlice";
 
-export const clearCart = createAsyncThunk("cart/clear", async ({ cart }) => {
-  await supabase
-    .from("customers")
-    .update({ cart: { ...initialCartState, userId: cart.userId } })
-    .eq("auth", cart.userId)
-    .select();
+export const clearCart = createAsyncThunk("cart/clear", async () => {
+  const clearedCart = { ...initialCartState };
 
-  return { ...initialCartState, userId: cart.userId };
+  try {
+    localStorage.setItem("userCart", JSON.stringify(clearedCart));
+  } catch (error) {
+    console.error("Error clearing cart in localStorage:", error);
+    throw new Error("Failed to clear cart in localStorage");
+  }
+
+  return clearedCart;
 });

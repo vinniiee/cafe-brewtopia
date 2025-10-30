@@ -26,7 +26,7 @@ export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const [focus, setFocus] = useState(false);
   const { data, isLoading } = useSearchCoffees(searchTerm);
-  const loading = isLoading && searchTerm.length > 3;
+  const loading = isLoading && searchTerm.length > 2;
   const handler = async (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);

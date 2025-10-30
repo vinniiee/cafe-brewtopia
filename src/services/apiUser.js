@@ -1,16 +1,18 @@
-import supabase from "./supabase";
-
 export async function updateUserCart({ cart }) {
-  // console.log("uploading cart...");
-  const { error } = await supabase
-    .from("customers")
-    .update({ cart })
-    .eq("auth", cart.userId)
-    .select();
-  if (error) {
-    console.log(error.message);
-    throw new Error(error.message);
+  try {
+    localStorage.setItem("userCart", JSON.stringify(cart));
+
+    return Promise.resolve({ success: true });
+  } catch (error) {
+    console.error("Error updating cart in localStorage:", error);
+    throw new Error("Failed to update cart in localStorage");
   }
-  // console.log("dqwdCCCCCCCAAAAAAAARRRRRRTT",data);
-  // console.log("updated cart");
+}
+
+
+
+export async function uodateUserInfo(updatedInfo){
+
+    
+
 }

@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
-import UserDetails from "../components/order/UserDetails";
+import UserDetails from "../components/user/UserDetails";
 import useAllOrders from "../features/orders/useAllOrders";
 import OrdersList from "../components/order/OrdersList";
 
 export default function User() {
   const cart = useSelector((state) => state.cart.data);
-  const {orders,isLoading} = useAllOrders(cart.userId);
+  const {orders,isLoading} = useAllOrders();
   console.log("Fetching orders: ",isLoading);
   console.log("Fetched Orders: ",orders);
 
