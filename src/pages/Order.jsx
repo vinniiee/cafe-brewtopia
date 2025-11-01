@@ -50,8 +50,7 @@ export default function Order() {
             >
               <p className="text-2xl">
                 Status for Order ID#{" "}
-                <span className="uppercase">{`${fetchedOrder?.id.split("-").join('').substring(1, 15)
-                  }`}</span>
+                <span className="uppercase">{`${fetchedOrder?.id}`}</span>
               </p>
               <p
                 className="bg-dark-coffee p-4 py-2 uppercase rounded-sm
